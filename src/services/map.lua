@@ -7,7 +7,7 @@ local BackgroundTileW
 local BackgroundTileHh
 
 local draw = function()
-  function draw_background(table, quad_info, tile_w, tile_h, images)
+  local draw_background = function(table, quad_info, tile_w, tile_h, images)
     for col_index, col in ipairs(table) do
       for row_index, char in ipairs(col) do
         local info = quad_info[char]
@@ -28,7 +28,7 @@ local draw = function()
 end
 
 local load = function(map_config)
-  function get_images(image_table)
+  local get_images = function(image_table)
     for key, val in pairs(image_table) do
       local image = love.graphics.newImage(val)
       image_table[key] = {
@@ -40,7 +40,7 @@ local load = function(map_config)
     return image_table
   end
 
-  function build_quads(quad_info, tile_w, tile_h, images)
+  local build_quads = function(quad_info, tile_w, tile_h, images)
     for key, val in pairs(quad_info) do
       quad_info[key]['quad'] = love.graphics.newQuad(
         val['pos_x'],
@@ -54,7 +54,7 @@ local load = function(map_config)
     return quad_info
   end
 
-  function build_map(map_string)
+  local build_map = function(map_string)
     map = {}
     -- Parser will match texte between whitespaces and new lines
     local parser = '[^\n%s]+'
