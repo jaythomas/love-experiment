@@ -10,6 +10,11 @@ local call_key_press = function(pressed_key)
 end
 
 local call_key_release = function(released_key)
+  local key_function = KeyReleases[released_key]
+
+  if (key_function) then
+    key_function()
+  end
 end
 
 local register_key_press = function(key, func)

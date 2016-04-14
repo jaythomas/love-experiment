@@ -1,9 +1,14 @@
--- local globals
+-- Libs
+--local Event = require 'lib/event'
 local Inspect = require 'lib/inspect'
+-- Services
+local Entity = require 'src/services/entity'
 local Input = require 'src/services/input'
 local Map = require 'src/services/map'
 local Player = require 'src/services/player'
 local Window = require 'src/services/window'
+-- Systems
+local UpdateMotion = require 'src/systems/update-motion'
 
 function love.load()
   -- Hard-code some default key maps:
@@ -20,8 +25,17 @@ end
 
 function love.draw()
   Map.draw()
+  Entity.draw()
 end
 
 function love.keypressed(pressed_key)
   Input.call_key_press(pressed_key)
+end
+
+function love.keyreleased(released_key)
+  Input.call_key_release(released_key)
+end
+
+function love.update(dt)
+  --UpdateMotion(Entity.list, dt)
 end
