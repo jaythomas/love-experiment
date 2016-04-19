@@ -1,7 +1,7 @@
 -- Libs
 --local Event = require 'lib/event'
 -- Services
-local Background = require 'src/services/map'
+local Background = require 'src/services/background'
 local Entity = require 'src/services/entity'
 local Input = require 'src/services/input'
 local Player = require 'src/services/player'
