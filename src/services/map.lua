@@ -55,7 +55,7 @@ local load = function(map_config)
   end
 
   local build_map = function(map_string)
-    map = {}
+    local map = {}
     -- Parser will match texte between whitespaces and new lines
     local parser = '[^\n%s]+'
     local map_width = #(map_string:match(parser))

@@ -1,10 +1,15 @@
-local Image = require 'src/services/image'
+local Sprite = require 'src/services/sprite'
+
+local name = 'lite'
 
 local entity = {
-  position = 0,
-  velocity = 0,
+  pos_x = 0,
+  pos_y = 0,
+  vel_x = 0,
+  vel_y = 0,
   speed = 12,
-  image = Image.list['lite']
+  sprite = Sprite.list[name].image,
+  animation = Sprite.list[name].animation
 }
 
 return entity
