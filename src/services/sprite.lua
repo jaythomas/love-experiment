@@ -1,4 +1,5 @@
-local anim8 = require 'lib/anim8'
+local Anim8 = require 'lib/anim8'
+local Love = require 'src/services/love'
 
 -- Information about sprites we need to create
 local sprite_maps = {}
@@ -18,7 +19,7 @@ local build_sprites = function(maps)
   local sprites = {}
 
   for key, map in pairs(maps) do
-    local image = love.graphics.newImage(map.path)
+    local image = Love.graphics.newImage(map.path)
 
     sprites[key] = {}
     sprites[key].image = image
@@ -34,12 +35,12 @@ local build_sprites = function(maps)
       local y = map.y or 0
       local gap = map.gap or 0
 
-      local grid = anim8.newGrid(frame_w, frame_h, img_w, img_h, x, y, gap)
+      local grid = Anim8.newGrid(frame_w, frame_h, img_w, img_h, x, y, gap)
 
       local frames = map.frames
       local duration = map.duration
 
-      local animation = anim8.newAnimation(grid(frames, 1), duration)
+      local animation = Anim8.newAnimation(grid(frames, 1), duration)
       sprites[key].animation = animation
     end
   end

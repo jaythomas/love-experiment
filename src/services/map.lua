@@ -1,20 +1,22 @@
--- local globals
-local Backgrounds
-local BackgroundQuadInfo
+local Love = require 'src/services/love'
 
-local BackgroundMap
-local BackgroundTileW
-local BackgroundTileHh
+local list = {
+  country_side = require 'src/backgrounds/country-side'
+}
+
+local current_background = {
+  id = nil
+}
 
 local draw = function()
-  local draw_background = function(table, quad_info, tile_w, tile_h, images)
+  local draw_background = function(table, quads, tile_w, tile_h, images)
     for col_index, col in ipairs(table) do
       for row_index, char in ipairs(col) do
-        local info = quad_info[char]
+        local info = quads[char]
         local img = images[info['img_idx']]['file']
         local pos_x = (col_index - 1) * tile_w
         local pos_y = (row_index - 1) * tile_h
-        love.graphics.draw(
+        Love.graphics.draw(
           img,
           info['quad'],
           pos_x,
@@ -24,13 +26,20 @@ local draw = function()
     end
   end
 
-  draw_background(BackgroundMap, BackgroundQuadInfo, BackgroundTileW, BackgroundTileH, Backgrounds)
+  draw_background(
+    current_background.map,
+    current_background.quads,
+    current_background.tile_w,
+    current_background.tile_h,
+    current_background.images
+  )
 end
 
-local load = function(map_config)
+local load = function(background_id)
+
   local get_images = function(image_table)
     for key, val in pairs(image_table) do
-      local image = love.graphics.newImage(val)
+      local image = Love.graphics.newImage(val)
       image_table[key] = {
         file = image,
         width = image:getWidth(),
@@ -42,7 +51,7 @@ local load = function(map_config)
 
   local build_quads = function(quad_info, tile_w, tile_h, images)
     for key, val in pairs(quad_info) do
-      quad_info[key]['quad'] = love.graphics.newQuad(
+      quad_info[key]['quad'] = Love.graphics.newQuad(
         val['pos_x'],
         val['pos_y'],
         tile_w,
@@ -82,13 +91,21 @@ local load = function(map_config)
     return map
   end
 
-  Backgrounds = get_images(map_config.images)
-  BackgroundQuadInfo = build_quads(map_config.quad_info, map_config.tile_w, map_config.tile_h, Backgrounds)
+  local config = list[background_id]
 
-  BackgroundMap = build_map(map_config.background_string)
-  BackgroundTileW = map_config.tile_w
-  BackgroundTileH = map_config.tile_h
+  current_background.id = background_id
+  current_background.images = get_images(config.images)
+  current_background.tile_w = config.tile_w
+  current_background.tile_h = config.tile_h
 
+  current_background.quads = build_quads(
+    config.quads,
+    config.tile_w,
+    config.tile_h,
+    current_background.images
+  )
+
+  current_background.map = build_map(config.background_string)
 end
 
 return {

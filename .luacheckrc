@@ -10,6 +10,7 @@ exclude_files = { 'lib/*.*' }
 -- Ignore non-standard lua love behavior just right here
 files['conf.lua'] = { ignore = { '112', '113' } }
 files['main.lua'] = { ignore = { '112', '113' } }
+files['src/services/love.lua'] = { ignore = { '112', '113' } }
 
 -- List of allowed globals
 globals = {}

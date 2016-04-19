@@ -17,7 +17,7 @@ local background_string = [[
   ............
 ]]
 
-local quad_info = {
+local quads = {
   ['.'] = { -- grass
     img_idx = 'countryside',
     pos_x = 0,
@@ -43,7 +43,7 @@ local quad_info = {
 return {
   images = images,
   background_string = background_string,
-  quad_info = quad_info,
+  quads = quads,
   tile_w = 32,
   tile_h = 32
 }

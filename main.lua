@@ -1,9 +1,9 @@
 -- Libs
 --local Event = require 'lib/event'
 -- Services
+local Background = require 'src/services/map'
 local Entity = require 'src/services/entity'
 local Input = require 'src/services/input'
-local Map = require 'src/services/map'
 local Player = require 'src/services/player'
 --local Window = require 'src/services/window'
 -- Systems
@@ -19,11 +19,11 @@ function love.load()
   Input.register_key_press('a', function() Player.move('left') end)
   Input.register_key_press('s', function() Player.move('down') end)
   Input.register_key_press('d', function() Player.move('right') end)
-  Map.load(require 'src/backgrounds/country-side')
+  Background.load('country_side')
 end
 
 function love.draw()
-  Map.draw()
+  Background.draw()
   Entity.draw()
 end
 
