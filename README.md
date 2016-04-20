@@ -1,6 +1,6 @@
-## Love Expirement
+# Love Expirement
 
-https://travis-ci.org/jaythomas/love-experiment.svg?branch=master
+[![Build Status](https://travis-ci.org/jaythomas/love-experiment.svg?branch=master)](https://travis-ci.org/jaythomas/love-experiment)
 
 A test game made using:
 - Lua LOVE
