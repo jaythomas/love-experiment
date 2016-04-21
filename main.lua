@@ -1,5 +1,6 @@
 -- Libs
 --local Event = require 'lib/event'
+--local Inspect = require 'lib/inspect'
 -- Services
 local Background = require 'src/services/background'
 local Entity = require 'src/services/entity'
@@ -8,7 +9,8 @@ local Input = require 'src/services/input'
 local Love = require 'src/services/love'
 --local Window = require 'src/services/window'
 -- Systems
---local UpdateMotion = require 'src/systems/update-motion'
+local UpdateMotion = require 'src/systems/update-motion'
+local UpdatePlayerVelocity = require 'src/systems/update-player-velocity'
 
 function Love.load()
   InputConfig.update()
@@ -30,5 +32,6 @@ end
 
 function Love.update(dt)
   Entity.update(dt)
-  --UpdateMotion(Entity.list, dt)
+  UpdatePlayerVelocity(Entity.list)
+  UpdateMotion(Entity.list, dt)
 end

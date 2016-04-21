@@ -6,7 +6,7 @@ local draw = function()
   for idx = 1, #list do
     local entity = list[idx]
     if (entity.animation) then
-      entity.animation:draw(entity.sprite, entity.pos_x, entity.pos_y)
+      entity.animation:draw(entity.sprite, entity.position.x, entity.position.y)
     end
   end
 end
