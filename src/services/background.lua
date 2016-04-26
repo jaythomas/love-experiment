@@ -65,7 +65,7 @@ local load = function(background_id)
 
   local build_map = function(map_string)
     local map = {}
-    -- Parser will match texte between whitespaces and new lines
+    -- Parser will match text between whitespaces and new lines
     local parser = '[^\n%s]+'
     local map_width = #(map_string:match(parser))
     for x = 1, map_width, 1 do

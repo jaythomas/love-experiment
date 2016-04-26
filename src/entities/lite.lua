@@ -1,26 +1,41 @@
+local Love = require 'src/services/love'
 local Sprite = require 'src/services/sprite'
+local World = require 'src/services/world'
 
 local name = 'lite'
 
+local body = Love.physics.newBody(World, 0, 0, 'dynamic')
+
+local shape = Love.physics.newPolygonShape(
+  12, 4,
+  20, 4,
+  24, 16,
+  20, 28,
+  12, 28,
+  8, 16
+)
+
+local fixture = Love.physics.newFixture(body, shape, 1)
+fixture:setRestitution(0.5)
+
 local entity = {
-  sprite = Sprite.list[name].image,
   animation = Sprite.list[name].animation,
+  body = body,
+  fixture = fixture,
   input_direction = {
     down = false,
     left = false,
     right = false,
     up = false
   },
+  max_speed = 110,
   player_id = 1,
   position = {
     x = 0,
     y = 0
   },
-  velocity = {
-    x = 0,
-    y = 0
-  },
-  max_speed = 110,
+  shape = shape,
+  sprite = Sprite.list[name].image,
 }
 
 return entity

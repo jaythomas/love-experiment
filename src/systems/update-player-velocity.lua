@@ -4,26 +4,31 @@ local System = require 'lib/system'
 
 local components = {
   '-player_id',
+  'body',
   'input_direction',
-  'velocity'
+  'max_speed'
 }
 
-local system = function(input_direction, velocity)
+local system = function(body, input_direction, max_speed)
+  local force_x = 0
+  local force_y = 0
+
   if (input_direction.left and not input_direction.right) then
-    velocity.x = -1
+    force_x = -1
   elseif (input_direction.right and not input_direction.left) then
-    velocity.x = 1
-  else
-    velocity.x = 0
+    force_x = 1
   end
 
   if (input_direction.up and not input_direction.down) then
-    velocity.y = -1
+    force_y = -1
   elseif (input_direction.down and not input_direction.up) then
-    velocity.y = 1
-  else
-    velocity.y = 0
+    force_y = 1
   end
+
+  body:applyForce(
+    (force_x * max_speed),
+    (force_y * max_speed)
+  )
 end
 
 return System(components, system)

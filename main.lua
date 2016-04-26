@@ -1,15 +1,18 @@
+-- Load world before anything else.
+local World = require 'src/services/world'
+
 -- Libs
 --local Event = require 'lib/event'
 --local Inspect = require 'lib/inspect'
 -- Services
 local Background = require 'src/services/background'
+--local Debug = 'src/services/debug'
 local Entity = require 'src/services/entity'
 local InputConfig = require 'src/services/input-config'
 local Input = require 'src/services/input'
 local Love = require 'src/services/love'
 --local Window = require 'src/services/window'
 -- Systems
-local UpdateMotion = require 'src/systems/update-motion'
 local UpdatePlayerVelocity = require 'src/systems/update-player-velocity'
 
 function Love.load()
@@ -18,7 +21,7 @@ function Love.load()
 end
 
 function Love.draw()
-  Background.draw()
+  --Background.draw()
   Entity.draw()
 end
 
@@ -33,5 +36,5 @@ end
 function Love.update(dt)
   Entity.update(dt)
   UpdatePlayerVelocity(Entity.list)
-  UpdateMotion(Entity.list, dt)
+  World:update(dt)
 end
