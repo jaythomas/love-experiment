@@ -1,40 +1,51 @@
+--- Main Love filee, containing all the pieces of the game loop.
+
 -- Load world before anything else.
 local World = require 'src/services/world'
 
--- Libs
+--- Libs
 --local Event = require 'lib/event'
---local Inspect = require 'lib/inspect'
--- Services
+
+--- Services
 local Background = require 'src/services/background'
 --local Debug = 'src/services/debug'
 local Entity = require 'src/services/entity'
 local InputConfig = require 'src/services/input-config'
 local Input = require 'src/services/input'
 local Love = require 'src/services/love'
+
 --local Window = require 'src/services/window'
--- Systems
+--- Systems
+local DrawEntities = require 'src/systems/draw-entities'
+local UpdateEntities = require 'src/systems/draw-entities'
 local UpdatePlayerVelocity = require 'src/systems/update-player-velocity'
 
+--- Functions to initialize on game boot
 function Love.load()
   InputConfig.update()
   Background.load('country_side')
 end
 
+--- Functions to run on re-draw
 function Love.draw()
   --Background.draw()
-  Entity.draw()
+  DrawEntities(Entity.list)
 end
 
+--- All active callbacks for pressing a key
 function Love.keypressed(pressed_key)
   Input.call_key_press(pressed_key)
 end
 
+--- All active callback for releasing a key
 function Love.keyreleased(released_key)
   Input.call_key_release(released_key)
 end
 
+--- Calculations to re-run on going through another loop
+-- @int delta time
 function Love.update(dt)
-  Entity.update(dt)
+  UpdateEntities(Entity.list, dt)
   UpdatePlayerVelocity(Entity.list)
   World:update(dt)
 end
