@@ -1,6 +1,8 @@
+--- UpdatePlayerDirection
 -- Append or remove an <input_direction> from a player
 -- entity, to which the player velocity can be
 -- calculated by the update-player-velocity system.
+
 local System = require 'lib/system'
 
 local components = {

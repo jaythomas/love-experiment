@@ -5,6 +5,7 @@ local World = require 'src/services/world'
 local name = 'lite'
 
 local body = Love.physics.newBody(World, 0, 0, 'dynamic')
+body:setFixedRotation(true)
 
 local shape = Love.physics.newPolygonShape(
   12, 4,
@@ -15,10 +16,10 @@ local shape = Love.physics.newPolygonShape(
   8, 16
 )
 
-local fixture = Love.physics.newFixture(body, shape, 1)
-fixture:setRestitution(0.5)
+local fixture = Love.physics.newFixture(body, shape)
 
 local entity = {
+  acceleration = 140,
   animation = Sprite.list[name].animation,
   body = body,
   fixture = fixture,
@@ -28,12 +29,8 @@ local entity = {
     right = false,
     up = false
   },
-  max_speed = 110,
+  max_speed = 100,
   player_id = 1,
-  position = {
-    x = 0,
-    y = 0
-  },
   shape = shape,
   sprite = Sprite.list[name].image,
 }
