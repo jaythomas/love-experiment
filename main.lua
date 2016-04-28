@@ -16,19 +16,21 @@ local Love = require 'src/services/love'
 
 --local Window = require 'src/services/window'
 --- Systems
+local DrawBackground = require 'src/systems/draw-background'
 local DrawEntities = require 'src/systems/draw-entities'
+local LoadBackground = require 'src/systems/load-background'
 local UpdateEntities = require 'src/systems/draw-entities'
 local UpdatePlayerVelocity = require 'src/systems/update-player-velocity'
 
 --- Functions to initialize on game boot
 function Love.load()
   InputConfig.update()
-  Background.load('country_side')
+  LoadBackground(Background.list)
 end
 
 --- Functions to run on re-draw
 function Love.draw()
-  --Background.draw()
+  DrawBackground(Background.list)
   DrawEntities(Entity.list)
 end
 

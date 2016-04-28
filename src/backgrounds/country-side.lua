@@ -1,6 +1,4 @@
-local images = {
-  countryside = 'img/countryside.png'
-}
+local image_path = 'img/countryside.png'
 
 local background_string = [[
   ....bb......
@@ -17,33 +15,30 @@ local background_string = [[
   ............
 ]]
 
-local quads = {
+local quad_map = {
   ['.'] = { -- grass
-    img_idx = 'countryside',
     pos_x = 0,
     pos_y = 0
   },
   ['w'] = { -- wood panel
-    img_idx = 'countryside',
     pos_x = 32,
     pos_y = 0
   },
   ['f'] = { --flowers
-    img_idx = 'countryside',
     pos_x = 0,
     pos_y = 32
   },
   ['b'] = { -- boxtop
-    img_idx = 'countryside',
     pos_x = 32,
     pos_y = 32
   }
 }
 
 return {
-  images = images,
+  active = true,
   background_string = background_string,
-  quads = quads,
+  image_path = image_path,
+  quad_map = quad_map,
   tile_w = 32,
   tile_h = 32
 }
