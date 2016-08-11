@@ -1,5 +1,5 @@
 --- Background
--- List if all the game backgrounds
+-- List of all the game backgrounds
 
 local list = {
   require 'src/backgrounds/country-side'

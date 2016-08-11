@@ -1,8 +1,8 @@
 local Love = require 'src/services/love'
 local World = require 'src/services/world'
 
-local body = Love.physics.newBody(World, 0, 300)
-local shape = Love.physics.newRectangleShape(300, 32)
+local body = Love.physics.newBody(World, 200, 300)
+local shape = Love.physics.newRectangleShape(600, 32)
 local fixture = Love.physics.newFixture(body, shape)
 
 local entity = {

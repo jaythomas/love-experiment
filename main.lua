@@ -8,6 +8,7 @@ local World = require 'src/services/world'
 
 --- Services
 local Background = require 'src/services/background'
+local Camera = require 'src/services/camera'
 --local Debug = 'src/services/debug'
 local Entity = require 'src/services/entity'
 local InputConfig = require 'src/services/input-config'
@@ -19,7 +20,8 @@ local Love = require 'src/services/love'
 local DrawBackground = require 'src/systems/draw-background'
 local DrawEntities = require 'src/systems/draw-entities'
 local LoadBackground = require 'src/systems/load-background'
-local UpdateEntities = require 'src/systems/draw-entities'
+local UpdateEntities = require 'src/systems/update-entities'
+local UpdatePlayerCamera = require 'src/systems/update-player-camera'
 local UpdatePlayerVelocity = require 'src/systems/update-player-velocity'
 
 --- Functions to initialize on game boot
@@ -30,8 +32,10 @@ end
 
 --- Functions to run on re-draw
 function Love.draw()
+  Camera.set()
   DrawBackground(Background.list)
   DrawEntities(Entity.list)
+  Camera.unset()
 end
 
 --- All active callbacks for pressing a key
@@ -47,6 +51,7 @@ end
 --- Calculations to re-run on going through another loop
 -- @int delta time
 function Love.update(dt)
+  UpdatePlayerCamera(Entity.list)
   UpdateEntities(Entity.list, dt)
   UpdatePlayerVelocity(Entity.list)
   World:update(dt)
