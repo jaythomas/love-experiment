@@ -9,7 +9,7 @@ A test game made using:
 - Docker-container-driven testing
 - And other nifty stuff!
 
-# Testing
+## Testing
 
 1. Build docker container
 
@@ -23,4 +23,4 @@ docker build -t love-experiment .
 docker run love-experiment
 ```
 
-It there you go, it should spit out test results.
+And there you go. It should spit out test results.

@@ -33,6 +33,8 @@ local system = function(body, shape, animation, polygon, sprite)
       body:getWorldPoints(shape:getPoints())
     )
   end
+  -- Reset color back to default
+  Love.graphics.setColor(255, 255, 255, 255)
 end
 
 return System(components, system)

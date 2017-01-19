@@ -1,3 +1,6 @@
+--- Input service
+-- Store and process callbacks for input actions
+
 local KeyPresses = {}
 local KeyReleases = {}
 

@@ -1,3 +1,6 @@
+--- Input config
+-- Load and store input functions (hard-coded for now)
+
 local Entity = require 'src/services/entity'
 local Input = require 'src/services/input'
 local Love = require 'src/services/love'

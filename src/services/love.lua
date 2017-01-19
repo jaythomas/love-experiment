@@ -11,6 +11,8 @@ local mock = {
     quit = noop,
     wait = noop
   },
+  filesystem = {
+  },
   graphics = {
     arc = noop,
     circle = noop,
@@ -223,7 +225,7 @@ local mock = {
   }
 }
 
-if (love) then
+if love then
   return love
 end
 
