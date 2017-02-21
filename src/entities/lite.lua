@@ -1,38 +1,49 @@
-local Love = require 'src/services/love'
-local Sprite = require 'src/services/sprite'
-local World = require 'src/services/world'
-
-local name = 'lite'
-
-local body = Love.physics.newBody(World, 0, 0, 'dynamic')
-body:setFixedRotation(true)
-
-local shape = Love.physics.newPolygonShape(
-  12, 4,
-  20, 4,
-  24, 16,
-  20, 28,
-  12, 28,
-  8, 16
-)
-
-local fixture = Love.physics.newFixture(body, shape)
-
-local entity = {
+return {
   acceleration = 140,
-  animation = Sprite.list[name].animation,
-  body = body,
-  fixture = fixture,
-  input_direction = {
-    down = false,
-    left = false,
-    right = false,
-    up = false
+  actions = {
+    'stand-down',
+    'stand-left',
+    'stand-right',
+    'stand-up',
+    'move-down',
+    'move-left',
+    'move-right',
+    'move-up'
   },
-  max_speed = 100,
+  body = {
+    fixed_rotation = true,
+    type = 'dynamic'
+  },
+  fixture = {
+    friction = 0
+  },
+  input_actions = {
+    dpdown = 'move-down',
+    dpleft = 'move-left',
+    dpright = 'move-right',
+    dpup = 'move-up',
+    down = 'move-down',
+    left = 'move-left',
+    right = 'move-right',
+    up = 'move-up'
+  },
+  max_speed = 120,
   player_id = 1,
-  shape = shape,
-  sprite = Sprite.list[name].image,
+  shape = {
+    points = {
+      12, 4,
+      20, 4,
+      24, 16,
+      20, 28,
+      12, 28,
+      8, 16
+    },
+    type = 'polygon'
+    --height = 32,
+    --offset_x = 32,
+    --offset_y = 46,
+    --width = 32,
+    --type = 'rectangle'
+  },
+  sprites = 'dove'
 }
-
-return entity

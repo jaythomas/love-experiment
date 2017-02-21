@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="60" tilewidth="16" tileheight="16" nextobjectid="3">
+ <tileset firstgid="1" name="river" tilewidth="256" tileheight="320" tilecount="1" columns="1">
+  <image source="../../img/stage0-river.png" width="256" height="320"/>
+ </tileset>
+ <tileset firstgid="2" name="stage0-clouds0" tilewidth="16" tileheight="16" tilecount="96" columns="16">
+  <image source="../../img/stage0-clouds0.png" trans="000000" width="256" height="103"/>
+ </tileset>
+ <tileset firstgid="98" name="stage0-clouds1" tilewidth="16" tileheight="16" tilecount="96" columns="16">
+  <image source="../../img/stage0-clouds1.png" trans="000000" width="256" height="103"/>
+ </tileset>
+ <layer name="ground0" width="16" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UMQ0AAAgEMfBvGhEMH0Kr4KarArip0wEAIf4HfLX93wBEMDTFAA8AAA==
+  </data>
+ </layer>
+ <layer name="ground1" width="16" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UMQEAAAjDMMTMv0Y8sJPk79vMXYoWoNU8yL8AAP5ZQL49GgAPAAA=
+  </data>
+ </layer>
+ <objectgroup name="play-field0"/>
+ <layer name="clouds0" width="16" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3BAQ0AAADCoPdPbQ8HFAAAAPwbZzTZygAPAAA=
+  </data>
+ </layer>
+ <objectgroup name="play-field1">
+  <object id="2" name="lite" type="entity" x="128" y="924"/>
+ </objectgroup>
+ <layer name="clouds1" width="16" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3RVVICABRAUdZqYosdmGBji53YHdhi7cyzA3915t2Zs4KbSET/uTLKqaCSKqpJUkMtddTTQCNNNJOihVbaaKeDTrropode0vTRzwCDDDFMhiwjjDLGOBNMMkWOaWaYZY55FlhkiTzLrLDKGutssMkW2+ywyx4F9jngkCOOOeGUM8654JIrrrnhljuK3PPAI08888Irb5R454NPvvj+bU4URVEURVEURX+qHxdHHsYADwAA
+  </data>
+ </layer>
+ <layer name="clouds2" width="16" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3BAQ0AAADCoPdPbQ8HFAAAAPwbZzTZygAPAAA=
+  </data>
+ </layer>
+ <layer name="clouds3" width="16" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3BAQ0AAADCoPdPbQ8HFAAAAPwbZzTZygAPAAA=
+  </data>
+ </layer>
+</map>

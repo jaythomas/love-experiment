@@ -1,58 +1,71 @@
---- Main Love filee, containing all the pieces of the game loop.
+--- This is the main Love file, containing all the pieces of the game loop.
 
--- Load world before anything else.
-local World = require 'src/services/world'
-
---- Libs
---local Event = require 'lib/event'
-
---- Services
-local Background = require 'src/services/background'
+-- Services
+local Args = require 'src/services/args'
 local Camera = require 'src/services/camera'
---local Debug = 'src/services/debug'
 local Entity = require 'src/services/entity'
-local InputConfig = require 'src/services/input-config'
 local Input = require 'src/services/input'
 local Love = require 'src/services/love'
+local Map = require 'src/services/map'
+local World = require 'src/services/world'
 
---local Window = require 'src/services/window'
---- Systems
-local DrawBackground = require 'src/systems/draw-background'
-local DrawEntities = require 'src/systems/draw-entities'
-local LoadBackground = require 'src/systems/load-background'
-local UpdateEntities = require 'src/systems/update-entities'
-local UpdatePlayerCamera = require 'src/systems/update-player-camera'
+-- Systems
+local UpdateCamera = require 'src/systems/update-camera'
+local UpdateEntityAnimation = require 'src/systems/update-entity-animation'
+local UpdateEntityVelocity = require 'src/systems/update-entity-velocity'
 local UpdatePlayerVelocity = require 'src/systems/update-player-velocity'
 
---- Functions to initialize on game boot
-function Love.load()
-  InputConfig.update()
-  LoadBackground(Background.list)
+-- Functions to initialize on game boot
+function Love.load(args)
+  Args.load(args)
+  Map.load('stage0')
+  -- Press esc to close game
+  Input.register_key_press('escape', function()
+    Love.event.quit()
+  end)
 end
 
---- Functions to run on re-draw
+-- Functions to run on re-draw
 function Love.draw()
   Camera.set()
-  DrawBackground(Background.list)
-  DrawEntities(Entity.list)
+  Map.draw()
   Camera.unset()
 end
 
---- All active callbacks for pressing a key
+-- Gamepad/Joystick dpad button press event
+-- joystick (joystick table) https://love2d.org/wiki/Joystick
+-- button (string)
+function Love.gamepadpressed(_, button)
+  Input.call_key_press(button)
+end
+
+-- Gamepad/Joystick dpad button release event
+-- joystick (joystick table) https://love2d.org/wiki/Joystick
+-- button (string)
+function Love.gamepadreleased(_, button)
+  Input.call_key_release(button)
+end
+
+-- All active callbacks for pressing a key
+-- pressedKey (string)
 function Love.keypressed(pressed_key)
   Input.call_key_press(pressed_key)
 end
 
---- All active callback for releasing a key
+-- All active callbacks for releasing a key
+-- releasedKey (string)
 function Love.keyreleased(released_key)
   Input.call_key_release(released_key)
 end
 
---- Calculations to re-run on going through another loop
--- @int delta time
+-- Calculations to re-run on going through another loop
+-- dt (integer) delta time (in seconds)
 function Love.update(dt)
-  UpdatePlayerCamera(Entity.list)
-  UpdateEntities(Entity.list, dt)
-  UpdatePlayerVelocity(Entity.list)
+  for _, entity in ipairs(Entity.list) do
+    UpdateCamera(entity)
+    UpdateEntityVelocity(entity)
+    UpdatePlayerVelocity(entity)
+    UpdateEntityAnimation(entity, dt)
+  end
   World:update(dt)
 end

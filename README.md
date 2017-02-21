@@ -3,24 +3,66 @@
 [![Build Status](https://travis-ci.org/jaythomas/love-experiment.svg?branch=master)](https://travis-ci.org/jaythomas/love-experiment)
 [![License](https://img.shields.io/badge/License-LGPL%203.0-brightgreen.svg)](LICENSE)
 
-A test game made using:
+- [Overview](#overview)
+- [Running the game](#running-the-game)
+- [Command line arguments](#command-line-arguments)
+- [Code testing](#testing)
+- [Distributing](#distributing)
+
+## Overview
+
+This is a test shoot-em-up game made using:
 - Lua LOVE
 - ECS-inspired designs
 - Docker-container-driven testing
 - And other nifty stuff!
 
-## Testing
+## Running the game
 
-1. Build docker container
+1.) Install [LÖVE](https://love2d.org/). `conf.lua` specifies the recommended version of LÖVE to run.
+
+2.) Run the command or create a shortcut.
+
+On unix, you can change to the game directory run it like so:
 
 ```sh
-docker build -t love-experiment .
+love .
 ```
 
-2. Run the container
+On Windows, you can create a shortcut with a path to Love and path to the game:
 
 ```
-docker run love-experiment
+"C:/path/to/love.exe" "C:/path/to/game/directory"
 ```
 
-And there you go. It should spit out test results.
+## Command line arguments
+
+### debug
+
+```
+love . debug
+```
+
+Run the game in debug mode to draw collision lines and log debug information.
+
+
+## Code testing
+
+1.) Build docker container
+
+```sh
+docker build -t test .
+```
+
+2.) Run the container
+
+```
+docker run test # Run luacheck to check for linting errors
+docker run test busted .
+```
+
+...And there you go. It should spit out linting errors and test results.
+
+## Distributing
+
+See the Love [wiki article](https://love2d.org/wiki/Game_Distribution) on creating executable binaries.
