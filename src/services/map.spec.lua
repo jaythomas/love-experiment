@@ -56,6 +56,11 @@ describe('services/map', function()
           }
         end,
         newQuad = function()
+          return {
+            getViewport = function()
+              return nil, nil, 32, 32
+            end
+          }
         end,
         polygon = function()
           return true

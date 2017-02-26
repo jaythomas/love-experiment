@@ -15,8 +15,14 @@ local system = function(entity, input_actions)
   entity.input = {}
   for key, val in pairs(input_actions) do
     local action = require('src/components/actions/' .. val)
-    Input.register_key_press(key, action.begin, entity)
-    Input.register_key_release(key, action.finish, entity)
+    local begin_closure = function()
+      action.begin(entity)
+    end
+    local finish_closure = function()
+      action.finish(entity)
+    end
+    Input.register_key_press(key, begin_closure)
+    Input.register_key_release(key, finish_closure)
   end
   return input_actions
 end

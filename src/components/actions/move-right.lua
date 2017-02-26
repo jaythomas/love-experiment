@@ -7,14 +7,12 @@ local begin_components = {
   '=sprite',
   'sprites'
 }
-local begin_system = function(input, sprite, sprites)
+local begin_system = function(input, _, sprites)
   input.right = true
   if input.left then
-    sprite = sprites.actions.default:clone()
-  else
-    sprite = sprites.actions.move_right:clone()
+    return input, sprites.actions.default:clone()
   end
-  return input, sprite
+  return input, sprites.actions.move_right:clone()
 end
 
 local finish_components = {
@@ -22,14 +20,12 @@ local finish_components = {
   '=sprite',
   'sprites'
 }
-local finish_system = function(input, sprite, sprites)
+local finish_system = function(input, _, sprites)
   input.right = false
   if input.left then
-    sprite = sprites.actions.move_left:clone()
-  else
-    sprite = sprites.actions.default:clone()
+    return input, sprites.actions.move_left:clone()
   end
-  return input, sprite
+  return input, sprites.actions.default:clone()
 end
 
 return {
