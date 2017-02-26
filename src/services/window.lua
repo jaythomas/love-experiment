@@ -4,6 +4,7 @@
 local Love = require 'src/services/love'
 
 local width, height = Love.graphics:getDimensions()
+print(width, height)
 
 return {
   height = height,

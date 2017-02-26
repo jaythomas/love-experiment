@@ -1,19 +1,23 @@
 --- Camera
 -- Translation layer between coordinates and drawn graphics
 
-local Window = require 'src/services/window'
 local Love = require 'src/services/love'
 
--- Distance between player and screen edge before the player is considered to be in the bounary in which the camera needs to be moved.
-local boundary_size = 256
+-- Distance between player and screen edge before the
+-- player is considered to be in the bounary in which
+-- the camera needs to be moved.
+local boundary_size = 0
 local pos_x = 0
 local pos_y = 0
 local rotation = 0
-local scale_x = 1
-local scale_y = 1
+local scale_x = 2
+local scale_y = 2
+local window_width, window_height = Love.graphics:getDimensions()
+window_width = window_width / scale_x
+window_height = window_height / scale_y
 
 local get_boundary_bottom = function()
-  return pos_y + Window.height - boundary_size
+  return pos_y + window_height - boundary_size
 end
 
 local get_boundary_left = function()
@@ -21,7 +25,7 @@ local get_boundary_left = function()
 end
 
 local get_boundary_right = function()
-  return pos_x + Window.width - boundary_size
+  return pos_x + window_width - boundary_size
 end
 
 local get_boundary_top = function()
@@ -41,18 +45,10 @@ local rotate = function(dr)
   rotation = rotation + dr
 end
 
-local scale = function(sx, sy)
-  sx = sx or 1
-  scale_x = scale_x * sx
-  -- If no second argument was provided,
-  -- do equal scaling for x and y
-  scale_y = scale_y * (sy or sx)
-end
-
 local set = function()
   Love.graphics.push()
   Love.graphics.rotate(-rotation)
-  Love.graphics.scale(1 / scale_x, 1 / scale_y)
+  Love.graphics.scale(scale_x, scale_y)
   Love.graphics.translate(-pos_x, -pos_y)
 end
 
@@ -62,8 +58,8 @@ local set_position = function(x, y)
 end
 
 local set_scale = function(sx, sy)
-  scale_x = sx or (scale_x)
-  scale_y = sy or (scale_y)
+  scale_x = sx or scale_x
+  scale_y = sy or sx or scale_y
 end
 
 local unset = function()
@@ -78,7 +74,6 @@ return {
   get_position = get_position,
   move = move,
   rotate = rotate,
-  scale = scale,
   set = set,
   set_position = set_position,
   set_scale = set_scale,

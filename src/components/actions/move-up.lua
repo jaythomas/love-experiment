@@ -1,14 +1,26 @@
---- MoveUp
+--- MoveUp - generic player movement
 
-local begin = function(entity)
-  entity.input.up = true
+local System = require 'lib/system'
+
+local begin_components = {
+  '=input'
+}
+
+local begin_system = function(input)
+  input.up = true
+  return input
 end
 
-local finish = function(entity)
-  entity.input.up = false
+local finish_components = {
+  '=input'
+}
+
+local finish_system = function(input)
+  input.up = false
+  return input
 end
 
 return {
-  begin = begin,
-  finish = finish
+  begin = System(begin_components, begin_system),
+  finish = System(finish_components, finish_system)
 }

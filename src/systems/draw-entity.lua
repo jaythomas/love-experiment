@@ -6,21 +6,20 @@ local Love = require 'src/services/love'
 local System = require 'lib/system'
 
 local components = {
-  'current_action',
   'body',
   'fixture',
+  'sprite',
   'sprites',
   '?shape',
 }
 
-local system = function(current_action, body, fixture, sprites, shape, layer_idx)
+local system = function(body, fixture, sprite, sprites, shape, layer_idx)
   -- Don't draw the entity unless it belongs to the
   -- layer from which this system was invoked.
   if fixture:getGroupIndex() ~= layer_idx then
     return
   end
-  local sprite_key = current_action
-  sprites.actions[sprite_key]:draw(
+  sprite:draw(
     sprites.image,
     body:getX(),
     body:getY(),

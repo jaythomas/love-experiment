@@ -50,6 +50,10 @@ codes = true
 -- true, don't allow globals
 global = true
 
+-- 1, concurrent checks (requires lualanes)
+-- https://github.com/LuaLanes/lanes
+jobs = 1
+
 -- true, don't allow variables to be shadowed
 redefined = true
 

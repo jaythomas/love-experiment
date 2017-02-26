@@ -1,15 +1,5 @@
 return {
   acceleration = 140,
-  actions = {
-    'stand-down',
-    'stand-left',
-    'stand-right',
-    'stand-up',
-    'move-down',
-    'move-left',
-    'move-right',
-    'move-up'
-  },
   body = {
     fixed_rotation = true,
     type = 'dynamic'
@@ -45,5 +35,5 @@ return {
     --width = 32,
     --type = 'rectangle'
   },
-  sprites = 'dove'
+  sprites = 'm1'
 }

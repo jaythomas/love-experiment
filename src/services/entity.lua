@@ -35,7 +35,6 @@ local spawn = function(object, layer_index)
   RegisterFixture(entity, layer_index)
   RegisterSprites(entity)
   RegisterInputActions(entity)
-  entity.current_action = 'default'
   table.insert(entities, entity)
 end
 

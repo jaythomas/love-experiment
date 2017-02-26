@@ -7,29 +7,23 @@ local Camera = require 'src/services/camera'
 
 local components = {
   '-player_id',
-  'body'
+  'body',
+  'sprite'
 }
 
-local system = function(body)
-  local player_pos_x, player_pos_y = body:getPosition()
+local system = function(body, sprite)
+  local _, player_pos_y = body:getPosition()
+  local _, player_height = sprite:getDimensions()
 
   local camera_pos_x, camera_pos_y = Camera.get_position()
 
   local boundary_bottom = Camera.get_boundary_bottom()
-  local boundary_left = Camera.get_boundary_left()
-  local boundary_right = Camera.get_boundary_right()
   local boundary_top = Camera.get_boundary_top()
-
-  if player_pos_x < boundary_left then
-    camera_pos_x = camera_pos_x - (boundary_left - player_pos_x)
-  elseif player_pos_x > boundary_right then
-    camera_pos_x = camera_pos_x - (boundary_right - player_pos_x)
-  end
 
   if player_pos_y < boundary_top then
     camera_pos_y = camera_pos_y - (boundary_top - player_pos_y)
-  elseif player_pos_y > boundary_bottom then
-    camera_pos_y = camera_pos_y - (boundary_bottom - player_pos_y)
+  elseif player_pos_y + player_height > boundary_bottom then
+    camera_pos_y = camera_pos_y - (boundary_bottom - (player_pos_y + player_height))
   end
 
   -- Floor the values to avoid screen-tearing floats

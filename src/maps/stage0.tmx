@@ -16,7 +16,7 @@
  </layer>
  <layer name="ground1" width="16" height="60">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3UMQEAAAjDMMTMv0Y8sJPk79vMXYoWoNU8yL8AAP5ZQL49GgAPAAA=
+   H4sIAAAAAAAAA+3LMQ0AAAgDMMTMv0Y8jISr/Zvp5XABAADg0wKoED8oAA8AAA==
   </data>
  </layer>
  <objectgroup name="play-field0"/>

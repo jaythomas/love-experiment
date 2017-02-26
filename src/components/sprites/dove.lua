@@ -1,5 +1,5 @@
 return {
-  path = 'img/dove.png',
+  path = 'img/ship-dove.png',
   width = 32,
   height = 32,
   actions = {
