@@ -2,13 +2,13 @@
 
 local System = require 'lib/system'
 
-local begin_components = {
+local components = {
   '=input',
   '=sprite',
   'sprites'
 }
 
-local begin_system = function(input, _, sprites)
+local key_press_system = function(input, _, sprites)
   input.left = true
   if input.right then
     return input, sprites.actions.default:clone()
@@ -16,13 +16,7 @@ local begin_system = function(input, _, sprites)
   return input, sprites.actions.move_left:clone()
 end
 
-local finish_components = {
-  '=input',
-  '=sprite',
-  'sprites'
-}
-
-local finish_system = function(input, _, sprites)
+local key_release_system = function(input, _, sprites)
   input.left = false
   if input.right then
     return input, sprites.actions.move_right:clone()
@@ -31,6 +25,6 @@ local finish_system = function(input, _, sprites)
 end
 
 return {
-  begin = System(begin_components, begin_system),
-  finish = System(finish_components, finish_system)
+  key_press = System(components, key_press_system),
+  key_release = System(components, key_release_system)
 }

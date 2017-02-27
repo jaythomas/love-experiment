@@ -15,7 +15,8 @@ return {
     down = 'move-down',
     left = 'move-left',
     right = 'move-right',
-    up = 'move-up'
+    up = 'move-up',
+    ['return'] = 'toggle-pause'
   },
   max_speed = 120,
   player_id = 1,

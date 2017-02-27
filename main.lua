@@ -29,6 +29,10 @@ end
 function Love.draw()
   Camera.set()
   Map.draw()
+  -- TODO - this could be an entity
+  if Input.is_paused() then
+    Love.graphics.print('-paused-', Camera.get_position())
+  end
   Camera.unset()
 end
 
@@ -61,6 +65,9 @@ end
 -- Calculations to re-run on going through another loop
 -- dt (integer) delta time (in seconds)
 function Love.update(dt)
+  if Input.is_paused() then
+    return
+  end
   for _, entity in ipairs(Entity.list) do
     UpdateCamera(entity)
     UpdateEntityVelocity(entity)

@@ -11,10 +11,23 @@ describe('services/input', function()
     package.loaded['src/services/input'] = nil
   end)
 
+  describe('is_paused/toggle_paused', function()
+    it('should exist', function()
+      assert(type(service.is_paused) == 'function')
+      assert(type(service.toggle_paused) == 'function')
+    end)
+
+    it('should toggle the paused state', function()
+      assert(service.is_paused() == false)
+      service.toggle_paused()
+      assert(service.is_paused())
+    end)
+  end)
+
   describe('register_key_press/call_key_press', function()
     it('should exist', function()
-      assert.equal(type(service.register_key_press), 'function')
-      assert.equal(type(service.call_key_press), 'function')
+      assert(type(service.register_key_press) == 'function')
+      assert(type(service.call_key_press) == 'function')
     end)
 
     it('should retain and invoke callbacks', function()
@@ -48,8 +61,8 @@ describe('services/input', function()
 
   describe('register_key_release/call_key_release', function()
     it('should exist', function()
-      assert.equal(type(service.register_key_release), 'function')
-      assert.equal(type(service.call_key_release), 'function')
+      assert(type(service.register_key_release) == 'function')
+      assert(type(service.call_key_release) == 'function')
     end)
 
     it('should retain and invoke callbacks', function()
