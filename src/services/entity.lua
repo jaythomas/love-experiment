@@ -1,7 +1,9 @@
 local Love = require 'src/services/love'
 local Util = require 'src/services/util'
 
+local CallOnSpawn = require 'src/systems/call-on-spawn'
 local RegisterBody = require 'src/systems/register-body'
+local RegisterCallbacks = require 'src/systems/register-callbacks'
 local RegisterFixture = require 'src/systems/register-fixture'
 local RegisterInputActions = require 'src/systems/register-input-actions'
 local RegisterShape = require 'src/systems/register-shape'
@@ -29,13 +31,20 @@ local spawn = function(object, layer_index)
     entity_config ~= nil,
     'Map entity reference "' .. object.name .. '" not found.'
   )
+
+  -- Don't mutate the source config
   local entity = Util.copy(entity_config)
+  -- Placeholder to write inputs to
+  entity.input = {}
+
   RegisterBody(entity, object.pos_x, object.pos_y)
+  RegisterCallbacks(entity)
   RegisterShape(entity)
   RegisterFixture(entity, layer_index)
   RegisterSprites(entity)
   RegisterInputActions(entity)
   table.insert(entities, entity)
+  CallOnSpawn(entity)
 end
 
 return {

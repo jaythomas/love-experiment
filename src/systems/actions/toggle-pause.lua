@@ -11,6 +11,4 @@ local system = function()
   Input.toggle_paused()
 end
 
-return {
-  key_press = System(components, system)
-}
+return System(components, system)

@@ -6,7 +6,13 @@ describe('services/world', function()
   before_each(function()
     package.loaded['src/services/love'] = {
       physics = {
-        newWorld = function() end,
+        newWorld = function()
+          local world = {}
+          function world:setCallbacks()
+            return self
+          end
+          return world
+        end,
         setMeter = function() end
       }
     }
@@ -34,11 +40,13 @@ describe('services/world', function()
   end)
 
   it('should return the world', function()
-    package.loaded['src/services/love'].physics.newWorld = function()
-      return 'foo'
-    end
+    --package.loaded['src/services/love'].physics.newWorld = function()
+      --return 'foo'
+    --end
     local service = require 'src/services/world'
-    assert.equal(service, 'foo')
+    local inspect = require 'lib/inspect'
+    print(inspect(service))
+    assert(type(service.setCallbacks == 'function'))
   end)
 
 end)

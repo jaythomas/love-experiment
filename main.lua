@@ -13,7 +13,8 @@ local World = require 'src/services/world'
 local UpdateCamera = require 'src/systems/update-camera'
 local UpdateEntityAnimation = require 'src/systems/update-entity-animation'
 local UpdateEntityVelocity = require 'src/systems/update-entity-velocity'
-local UpdatePlayerVelocity = require 'src/systems/update-player-velocity'
+local UpdateInputVelocity = require 'src/systems/update-input-velocity'
+local UpdatePlayerBoundaries = require 'src/systems/update-player-boundaries'
 
 -- Functions to initialize on game boot
 function Love.load(args)
@@ -71,7 +72,8 @@ function Love.update(dt)
   for _, entity in ipairs(Entity.list) do
     UpdateCamera(entity)
     UpdateEntityVelocity(entity)
-    UpdatePlayerVelocity(entity)
+    UpdateInputVelocity(entity)
+    UpdatePlayerBoundaries(entity)
     UpdateEntityAnimation(entity, dt)
   end
   World:update(dt)

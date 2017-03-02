@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="60" tilewidth="16" tileheight="16" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="60" tilewidth="16" tileheight="16" nextobjectid="4">
  <tileset firstgid="1" name="river" tilewidth="256" tileheight="320" tilecount="1" columns="1">
   <image source="../../img/stage0-river.png" width="256" height="320"/>
  </tileset>
@@ -27,6 +27,7 @@
  </layer>
  <objectgroup name="play-field1">
   <object id="2" name="lite" type="entity" x="128" y="924"/>
+  <object id="3" name="enemy-hiphi" type="entity" x="156" y="336"/>
  </objectgroup>
  <layer name="clouds1" width="16" height="60">
   <data encoding="base64" compression="gzip">

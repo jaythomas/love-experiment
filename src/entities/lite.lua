@@ -4,21 +4,51 @@ return {
     fixed_rotation = true,
     type = 'dynamic'
   },
+  defense = 1,
   fixture = {
+    density = 10,
     friction = 0
   },
+  health = 100,
   input_actions = {
-    dpdown = 'move-down',
-    dpleft = 'move-left',
-    dpright = 'move-right',
-    dpup = 'move-up',
-    down = 'move-down',
-    left = 'move-left',
-    right = 'move-right',
-    up = 'move-up',
-    ['return'] = 'toggle-pause'
+    dpdown = {
+      key_press = 'move-down-begin',
+      key_release = 'move-down-finish'
+    },
+    dpleft = {
+      key_press = 'move-left-begin',
+      key_release = 'move-left-finish'
+    },
+    dpright = {
+      key_press = 'move-right-begin',
+      key_release = 'move-right-finish'
+    },
+    dpup = {
+      key_press = 'move-up-begin',
+      key_release = 'move-up-finish'
+    },
+    down = {
+      key_press = 'move-down-begin',
+      key_release = 'move-down-finish'
+    },
+    left = {
+      key_press = 'move-left-begin',
+      key_release = 'move-left-finish'
+    },
+    right = {
+      key_press = 'move-right-begin',
+      key_release = 'move-right-finish'
+    },
+    up = {
+      key_press = 'move-up-begin',
+      key_release = 'move-up-finish'
+    },
+    ['return'] = {
+      key_press = 'toggle-pause'
+    }
   },
   max_speed = 120,
+  player = true,
   player_id = 1,
   shape = {
     points = {

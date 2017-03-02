@@ -8,22 +8,27 @@ local Love = require 'src/services/love'
 local components = {
   '_entity',
   'body',
+  '=fixture',
   'shape'
 }
 
-local system = function(entity, body, shape, layer_index)
-  local fixture = Love.physics.newFixture(body, shape)
-  if entity.fixture then
-    if entity.fixture.friction then
-      fixture:setFriction(entity.fixture.friction)
-    end
-    if entity.fixture.restitution then
-      fixture:setRestitution(entity.fixture.restitution)
-    end
+local system = function(entity, body, fixture, shape, layer_index)
+  local loaded_fixture = Love.physics.newFixture(body, shape)
+  if fixture.density then
+    loaded_fixture:setDensity(fixture.density)
+  end
+  if fixture.friction then
+    loaded_fixture:setFriction(fixture.friction)
+  end
+  if fixture.restitution then
+    loaded_fixture:setRestitution(fixture.restitution)
   end
   -- Fixtures in different layers cannot collide with each other
-  fixture:setGroupIndex(layer_index)
-  entity.fixture = fixture
+  loaded_fixture:setGroupIndex(layer_index)
+  -- Give the fixture context of the entity it belongs to so
+  -- we can extract this information in the event of a collision
+  loaded_fixture:setUserData(entity)
+  return loaded_fixture
 end
 
 return System(components, system)
