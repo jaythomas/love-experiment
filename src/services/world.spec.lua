@@ -40,12 +40,7 @@ describe('services/world', function()
   end)
 
   it('should return the world', function()
-    --package.loaded['src/services/love'].physics.newWorld = function()
-      --return 'foo'
-    --end
     local service = require 'src/services/world'
-    local inspect = require 'lib/inspect'
-    print(inspect(service))
     assert(type(service.setCallbacks == 'function'))
   end)
 

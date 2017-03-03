@@ -10,4 +10,4 @@ before_install:
 
 script:
   - docker run test
-  - docker run test busted .
+  - docker run test sh -c "busted --coverage . && luacov-coveralls -e usr/ -e lib/ -e .spec.lua -t $COVERALLS_TOKEN"

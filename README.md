@@ -1,6 +1,7 @@
 # Love Experiment
 
 [![Build Status](https://travis-ci.org/jaythomas/love-experiment.svg?branch=master)](https://travis-ci.org/jaythomas/love-experiment)
+[![Coverage Status](https://coveralls.io/repos/github/jaythomas/love-experiment/badge.svg?branch=master)](https://coveralls.io/github/jaythomas/love-experiment?branch=master)
 [![License](https://img.shields.io/badge/License-LGPL%203.0-brightgreen.svg)](LICENSE)
 
 - [Overview](#overview)

@@ -26,7 +26,3 @@ COPY . /usr/app
 
 ## Run tests
 CMD ["luacheck", "."]
-
-# Future use...
-#CMD ["coveralls", "--exclude lib", "--dump", "c.report.json"]
-#CMD ["luacov-coveralls", "-j", "c.report.json"]
