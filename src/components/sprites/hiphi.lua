@@ -6,6 +6,10 @@ return {
     default = {
       duration = 0.1,
       frames = { '1-2', 1 }
+    },
+    explode = {
+      duration = 0.1,
+      frames = { '3-5', 1 }
     }
   }
 }

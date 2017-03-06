@@ -18,10 +18,14 @@ local begin_contact = function(fixture_a, fixture_b, collision)
   local entity_b = fixture_b:getUserData()
 
   if entity_a.on_begin_contact then
-    entity_a.on_begin_contact(entity_a, entity_b, collision)
+    for _, callback in ipairs(entity_a.on_begin_contact) do
+      callback(entity_a, entity_b, collision)
+    end
   end
   if entity_b.on_begin_contact then
-    entity_b.on_begin_contact(entity_b, entity_a, collision)
+    for _, callback in ipairs(entity_b.on_begin_contact) do
+      callback(entity_b, entity_a, collision)
+    end
   end
 end
 
@@ -31,10 +35,14 @@ local end_contact = function(fixture_a, fixture_b, collision)
   local entity_b = fixture_b:getUserData()
 
   if entity_a.on_end_contact then
-    entity_a.on_end_contact(entity_a, entity_b, collision)
+    for _, callback in ipairs(entity_a.on_end_contact) do
+      callback(entity_a, entity_b, collision)
+    end
   end
   if entity_b.on_end_contact then
-    entity_b.on_end_contact(entity_b, entity_a, collision)
+    for _, callback in ipairs(entity_b.on_end_contact) do
+      callback(entity_b, entity_a, collision)
+    end
   end
 end
 
@@ -44,10 +52,14 @@ local pre_contact = function(fixture_a, fixture_b, collision)
   local entity_b = fixture_b:getUserData()
 
   if entity_a.on_pre_contact then
-    entity_a.on_pre_contact(entity_a, entity_b, collision)
+    for _, callback in ipairs(entity_a.on_pre_contact) do
+      callback(entity_a, entity_b, collision)
+    end
   end
   if entity_b.on_pre_contact then
-    entity_b.on_pre_contact(entity_b, entity_a, collision)
+    for _, callback in ipairs(entity_b.on_pre_contact) do
+      callback(entity_b, entity_a, collision)
+    end
   end
 end
 
@@ -65,22 +77,14 @@ local post_contact = function(fixture_a, fixture_b, collision, n_impulse, t_impu
   local entity_b = fixture_b:getUserData()
 
   if entity_a.on_post_contact then
-    entity_a.on_post_contact(
-      entity_a,
-      entity_b,
-      collision,
-      n_impulse,
-      t_impulse
-    )
+    for _, callback in ipairs(entity_a.on_post_contact) do
+      callback(entity_a, entity_b, collision, n_impulse, t_impulse)
+    end
   end
   if entity_b.on_post_contact then
-    entity_b.on_post_contact(
-      entity_b,
-      entity_a,
-      collision,
-      n_impulse,
-      t_impulse
-    )
+    for _, callback in ipairs(entity_b.on_post_contact) do
+      callback(entity_b, entity_a, collision, n_impulse, t_impulse)
+    end
   end
 end
 

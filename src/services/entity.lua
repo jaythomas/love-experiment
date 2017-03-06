@@ -36,6 +36,11 @@ local spawn = function(object, layer_index)
   local entity = Util.copy(entity_config)
   -- Placeholder to write inputs to
   entity.input = {}
+  -- Layer to draw player in. We could just get
+  -- that information from the fixture collision
+  -- group that was set but that collision group
+  -- could change in special cases or on death.
+  entity.draw_layer = layer_index
 
   RegisterBody(entity, object.pos_x, object.pos_y)
   RegisterCallbacks(entity)

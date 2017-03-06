@@ -9,14 +9,11 @@ describe('services/camera', function()
         getDimensions = function()
           return 200, 100
         end,
-        push = function()
-        end,
-        rotate = function()
-        end,
-        scale = function()
-        end,
-        translate = function()
-        end
+        push = function() end,
+        rotate = function() end,
+        setDefaultFilter = function() end,
+        scale = function() end,
+        translate = function() end
       }
     }
     package.loaded['src/services/love'] = love_mock

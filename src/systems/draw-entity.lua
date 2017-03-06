@@ -7,24 +7,27 @@ local System = require 'lib/system'
 
 local components = {
   'body',
-  'fixture',
-  'sprite',
-  'sprites',
+  'draw_layer',
+  '?shader',
   '?shape',
+  'sprite',
+  'sprites'
 }
 
-local system = function(body, fixture, sprite, sprites, shape, layer_idx)
+local system = function(body, draw_layer, shader, shape, sprite, sprites, layer_idx)
   -- Don't draw the entity unless it belongs to the
   -- layer from which this system was invoked.
-  if fixture:getGroupIndex() ~= layer_idx then
+  if draw_layer ~= layer_idx then
     return
   end
+  Love.graphics.setShader(shader)
   sprite:draw(
     sprites.image,
     body:getX(),
     body:getY(),
     body:getAngle()
   )
+  Love.graphics.setShader()
 
   -- Draw fixture shape edges in debug mode
   if Args.get_arg('debug') and shape then

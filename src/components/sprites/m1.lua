@@ -46,6 +46,10 @@ return {
       gap = 0,
       x = 32
     },
+    explode = {
+      duration = 0.1,
+      frames = { '6-10', 1 }
+    },
     move_left = {
       frames = { 2, '1-2', 1, '1-2' },
       on_loop = hold_full_turn,

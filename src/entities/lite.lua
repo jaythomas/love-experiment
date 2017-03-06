@@ -4,6 +4,7 @@ return {
     fixed_rotation = true,
     type = 'dynamic'
   },
+  damage = 100,
   defense = 1,
   fixture = {
     density = 10,
@@ -48,6 +49,14 @@ return {
     }
   },
   max_speed = 120,
+  on_begin_contact = {
+    'collide',
+    'flash-damage',
+    'call-on-death'
+  },
+  on_death = {
+    'explode'
+  },
   player = true,
   player_id = 1,
   shape = {

@@ -13,6 +13,14 @@ return {
   enemy = true,
   health = 100,
   max_speed = 100,
+  on_begin_contact = {
+    'collide',
+    'flash-damage',
+    'call-on-death'
+  },
+  on_death = {
+    'explode'
+  },
   on_spawn = { 'move-down-begin' },
   shape = {
     height = 16,

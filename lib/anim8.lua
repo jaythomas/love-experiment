@@ -227,14 +227,24 @@ function Animation:update(dt)
   if self.status ~= "playing" then return end
 
   self.timer = self.timer + dt
+  local oldPosition = self.position
+
   local loops = math.floor(self.timer / self.totalDuration)
   if loops ~= 0 then
     self.timer = self.timer - self.totalDuration * loops
     local f = type(self.onLoop) == 'function' and self.onLoop or self[self.onLoop]
     f(self, loops)
+    -- If animation was paused in the onLoop callback,
+    -- there is no need to attempt a seekFrameIndex().
+    if self.status == "paused" then
+      return
+    end
   end
-
-  self.position = seekFrameIndex(self.intervals, self.timer)
+  -- If the position wasn't changed in the onLoop
+  -- callback, then we need to run seekFrameIndex().
+  if self.position == oldPosition then
+    self.position = seekFrameIndex(self.intervals, self.timer)
+  end
 end
 
 function Animation:pause()

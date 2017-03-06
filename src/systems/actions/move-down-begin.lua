@@ -1,7 +1,10 @@
 --- MoveDownBegin - generic player movement
 local System = require 'lib/system'
 
-local components = { '=input' }
+local components = {
+  '!dead',
+  '=input'
+}
 
 local system = function(input)
   input.down = true

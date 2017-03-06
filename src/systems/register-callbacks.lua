@@ -10,6 +10,7 @@ local system = function(entity)
   local systems_dir = 'src/systems/actions/'
 
   local on_begin_contact = {}
+  local on_death = {}
   local on_end_contact = {}
   local on_post_contact = {}
   local on_pre_contact = {}
@@ -20,6 +21,13 @@ local system = function(entity)
       table.insert(on_begin_contact, require(systems_dir .. value))
     end
     entity.on_begin_contact = on_begin_contact
+  end
+
+  if entity.on_death then
+    for _, value in ipairs(entity.on_death) do
+      table.insert(on_death, require(systems_dir .. value))
+    end
+    entity.on_death = on_death
   end
 
   if entity.on_end_contact then

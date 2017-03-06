@@ -3,6 +3,7 @@
 local System = require 'lib/system'
 
 local components = {
+  '!dead',
   '=input',
   '=sprite',
   'sprites'

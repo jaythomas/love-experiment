@@ -15,6 +15,8 @@ local scale_y = 2
 local window_width, window_height = Love.graphics:getDimensions()
 window_width = window_width / scale_x
 window_height = window_height / scale_y
+-- https://love2d.org/wiki/FilterMode
+Love.graphics.setDefaultFilter('nearest', 'nearest')
 
 local get_boundary_bottom = function()
   return pos_y + window_height - boundary_size
