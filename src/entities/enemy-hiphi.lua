@@ -7,8 +7,11 @@ return {
   damage = 100,
   defense = 1,
   fixture = {
+    category = -8,
     density = 50,
-    friction = 100
+    friction = 100,
+    -- mask = (((0xFFFF) ~8) ~32)
+    mask = -65496
   },
   enemy = true,
   health = 100,
@@ -23,10 +26,10 @@ return {
   },
   on_spawn = { 'move-down-begin' },
   shape = {
-    height = 16,
-    offset_x = 16,
-    offset_y = 16,
-    width = 16,
+    height = 11,
+    offset_x = 8,
+    offset_y = 9,
+    width = 12,
     type = 'rectangle'
   },
   sprites = 'hiphi'

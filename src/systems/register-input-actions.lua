@@ -12,8 +12,6 @@ local components = {
 
 local system = function(entity, input_actions)
   local systems_dir = 'src/systems/actions/'
-  -- Provision "input" table to track state of all inputs
-  entity.input = {}
 
   for key, action in pairs(input_actions) do
 

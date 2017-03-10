@@ -11,10 +11,11 @@ local components = {
 }
 
 local system = function(body, pos_x, pos_y)
+
   local new_body = Love.physics.newBody(
     World,
-    pos_x,
-    pos_y,
+    pos_x + (body.offset_x or 0),
+    pos_y + (body.offset_y or 0),
     body.type
   )
   if body.fixed_rotation then

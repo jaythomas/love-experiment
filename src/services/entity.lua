@@ -25,6 +25,12 @@ end
 local entity_configs = get_entity_configs(entity_directory)
 local entities = {}
 
+-- object (table) a map entity object {
+--   name (string) entity config file
+--   pos_x (number) spawn x coordinate
+--   pos_y (number) spawn y coordinate
+-- }
+-- layer_index (number) what map layer to draw this in
 local spawn = function(object, layer_index)
   local entity_config = entity_configs[object.name]
   assert(
@@ -34,7 +40,7 @@ local spawn = function(object, layer_index)
 
   -- Don't mutate the source config
   local entity = Util.copy(entity_config)
-  -- Placeholder to write inputs to
+  -- Plovisionary table to write and track active inputs
   entity.input = {}
   -- Layer to draw player in. We could just get
   -- that information from the fixture collision

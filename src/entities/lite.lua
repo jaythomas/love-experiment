@@ -7,8 +7,11 @@ return {
   damage = 100,
   defense = 1,
   fixture = {
+    category = -4,
     density = 10,
-    friction = 0
+    friction = 0,
+    -- mask = (((0xFFFF) ~4) ~16)
+    mask = -65515
   },
   health = 100,
   input_actions = {
@@ -46,6 +49,9 @@ return {
     },
     ['return'] = {
       key_press = 'toggle-pause'
+    },
+    x = {
+      key_press = 'shot1'
     }
   },
   max_speed = 120,
@@ -60,20 +66,20 @@ return {
   player = true,
   player_id = 1,
   shape = {
-    points = {
-      12, 4,
-      20, 4,
-      24, 16,
-      20, 28,
-      12, 28,
-      8, 16
-    },
-    type = 'polygon'
-    --height = 32,
-    --offset_x = 32,
-    --offset_y = 46,
-    --width = 32,
-    --type = 'rectangle'
+    --points = {
+      --12, 4,
+      --20, 4,
+      --24, 16,
+      --20, 28,
+      --12, 28,
+      --8, 16
+    --},
+    --type = 'polygon'
+    height = 12,
+    offset_x = 8,
+    offset_y = 8,
+    width = 12,
+    type = 'rectangle'
   },
   sprites = 'm1'
 }

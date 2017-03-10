@@ -12,6 +12,7 @@ local Timer = require 'lib/timer'
 local World = require 'src/services/world'
 
 -- Systems
+local DestroyEntity = require 'src/systems/destroy-entity'
 local UpdateCamera = require 'src/systems/update-camera'
 local UpdateEntityAnimation = require 'src/systems/update-entity-animation'
 local UpdateEntityVelocity = require 'src/systems/update-entity-velocity'
@@ -78,6 +79,7 @@ function Love.update(dt)
   local i = 1
   while i <= #Entity.list do
     local entity = Entity.list[i]
+    DestroyEntity(entity)
     if entity.destroyed then
       -- Stay on the same index
       table.remove(Entity.list, i)

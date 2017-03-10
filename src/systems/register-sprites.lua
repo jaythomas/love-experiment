@@ -34,7 +34,7 @@ local system = function(entity, sprites)
 
     loaded_set.actions[key] = Anim8.newAnimation(
       grid:getFrames(unpack(frames)),
-      sprite_action.duration or sprite_config.duration or { 1, 1 },
+      sprite_action.duration or sprite_config.duration or 1,
       sprite_action.on_loop or sprite_config.on_loop or nil
     )
   end

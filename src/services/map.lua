@@ -83,6 +83,10 @@ local draw = function()
   end
 end
 
+local get_dimensions = function()
+  return active_map.pixel_width, active_map.pixel_height
+end
+
 local load = function(map_name)
   local load_quads = function(map)
     local quads = {}
@@ -204,6 +208,10 @@ return {
   -- @param {string} map_name - name of map to draw
   -- @return {nil}
   draw = draw,
+  -- Return active map's pixel dimensions
+  -- @param {number} width
+  -- @param {number} height
+  get_dimensions = get_dimensions,
   load = load,
   --- Set loaded images and quads for a given map to nil.
   -- would have a map name of "general".

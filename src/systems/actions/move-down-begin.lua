@@ -1,4 +1,5 @@
---- MoveDownBegin - generic player movement
+--- MoveDownBegin - generic entity movement
+
 local System = require 'lib/system'
 
 local components = {

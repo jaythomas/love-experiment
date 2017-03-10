@@ -5,11 +5,17 @@ local System = require 'lib/system'
 
 local components = {
   '_entity',
+  'input',
   '=sprite',
   'sprites'
 }
 
-local system = function(entity, _, sprites)
+local system = function(entity, input, _, sprites)
+  input.down = false
+  input.left = false
+  input.right = false
+  input.up = false
+
   local sprite = sprites.actions.explode:clone()
   sprite.onLoop = function(animation)
     animation:pause()

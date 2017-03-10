@@ -242,6 +242,9 @@ local parse = function(file_name, raw_file_content)
   parsed_map.render_order = parsed_xml.xarg.renderorder
   parsed_map.tile_height = tonumber(parsed_xml.xarg.tileheight)
   parsed_map.tile_width = tonumber(parsed_xml.xarg.tilewidth)
+  -- This will save doing the calculation in-game
+  parsed_map.pixel_height = parsed_map.rows * parsed_map.tile_height
+  parsed_map.pixel_width = parsed_map.columns * parsed_map.tile_width
   for _, element in ipairs(parsed_xml) do
     if element.label == 'layer' then
       table.insert(parsed_map.layers, parse_tile_layer(element, error_suffix))

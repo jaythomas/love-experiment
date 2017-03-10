@@ -1,4 +1,4 @@
---- MoveUpFinish - generic player movement
+--- MoveUpFinish - generic entity movement
 
 local System = require 'lib/system'
 
