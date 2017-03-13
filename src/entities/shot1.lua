@@ -1,19 +1,16 @@
 return {
   acceleration = 300,
   body = {
-    fixed_rotation = true,
     offset_x = -3,
-    offset_y = 2,
-    type = 'dynamic'
+    offset_y = 2
   },
   damage = 100,
   defense = 0,
   fixture = {
-    category = -32,
+    category = 2,
     density = 0,
     friction = 0,
-    mask = -65499
-    --mask = (((0xFFFF) ~4) ~32)
+    mask = 65535 - 1 - 2
   },
   health = 1,
   max_speed = 300,

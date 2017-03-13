@@ -1,17 +1,13 @@
 return {
   acceleration = 140,
-  body = {
-    fixed_rotation = true,
-    type = 'dynamic'
-  },
+  body = {},
   damage = 100,
   defense = 1,
   fixture = {
-    category = -4,
+    category = 1,
     density = 10,
     friction = 0,
-    -- mask = (((0xFFFF) ~4) ~16)
-    mask = -65515
+    mask = 65535 - 1 - 2
   },
   health = 100,
   input_actions = {
@@ -56,14 +52,13 @@ return {
   },
   max_speed = 120,
   on_begin_contact = {
-    'collide',
+    'update-health',
     'flash-damage',
     'call-on-death'
   },
   on_death = {
     'explode'
   },
-  player = true,
   player_id = 1,
   shape = {
     --points = {

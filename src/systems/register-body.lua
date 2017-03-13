@@ -16,9 +16,13 @@ local system = function(body, pos_x, pos_y)
     World,
     pos_x + (body.offset_x or 0),
     pos_y + (body.offset_y or 0),
-    body.type
+    body.type or 'dynamic'
   )
-  if body.fixed_rotation then
+  -- Give it a fixed rotation unless
+  -- explicitly set to false.
+  if body.fixed_rotation == false then
+    new_body:setFixedRotation(false)
+  else
     new_body:setFixedRotation(true)
   end
   return new_body

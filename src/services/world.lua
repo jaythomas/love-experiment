@@ -4,15 +4,31 @@ local Love = require 'src/services/love'
 local meter = 32 -- (base tile size)
 Love.physics.setMeter(meter)
 
+-- If two fixtures are contacting but aren't colliding
+-- based off their category or mask, invoke this check.
+-- https://love2d.org/wiki/World:setContactFilter
+-- @param {fixture} fixture_a - fixture A
+-- @param {fixture} fixture_b - fixture B
+-- @return {boolean} true if the entities should collide
+local contact_filter = function(fixture_a, fixture_b)
+  local entity_a = fixture_a:getUserData()
+  local entity_b = fixture_b:getUserData()
+
+  if entity_a.draw_layer == entity_b.draw_layer then
+    return true
+  end
+
+  return false
+end
+
 -- Called at the beginning of one contact iteration.
 -- When sliding along an object, there may be several.
 -- https://love2d.org/wiki/Fixture
 -- https://love2d.org/wiki/Contact
--- Params:
---   fixture_a (fixture table) first fixture object in the collision.
---   fixture_b (fixture table) second fixture object in the collision.
---   collision (contact table) world object created on and at
---   the point of contact.
+-- @param {fixture} fixture_a - first fixture object in the collision.
+-- @param {fixture} fixture_b - second fixture object in the collision.
+-- @param {contact} collision - world object created on and
+--                              at the point of contact
 local begin_contact = function(fixture_a, fixture_b, collision)
   local entity_a = fixture_a:getUserData()
   local entity_b = fixture_b:getUserData()
@@ -94,5 +110,6 @@ end
 -- @string skip sleeping entities
 local world = Love.physics.newWorld(0, 0, true)
 world:setCallbacks(begin_contact, end_contact, pre_contact, post_contact)
+world:setContactFilter(contact_filter)
 
 return world

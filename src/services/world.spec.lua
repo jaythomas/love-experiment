@@ -11,6 +11,9 @@ describe('services/world', function()
           function world:setCallbacks()
             return self
           end
+          function world:setContactFilter()
+            return self
+          end
           return world
         end,
         setMeter = function() end

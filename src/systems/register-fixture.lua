@@ -23,8 +23,7 @@ local system = function(entity, body, fixture, shape)
   if fixture.restitution then
     loaded_fixture:setRestitution(fixture.restitution)
   end
-  -- The layer_index mask means fixtures in different
-  -- layers cannot collide with each other.
+
   loaded_fixture:setFilterData(
     fixture.category or 0,
     fixture.mask or 0,

@@ -1,4 +1,4 @@
---- Collide
+--- UpdateHealth
 -- Process an entity's collision with another entity
 
 local System = require 'lib/system'

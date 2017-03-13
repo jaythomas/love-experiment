@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="60" tilewidth="16" tileheight="16" nextobjectid="4">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="60" tilewidth="16" tileheight="16" nextobjectid="8">
  <tileset firstgid="1" name="river" tilewidth="256" tileheight="320" tilecount="1" columns="1">
   <image source="../../img/stage0-river.png" width="256" height="320"/>
  </tileset>
- <tileset firstgid="2" name="stage0-clouds0" tilewidth="16" tileheight="16" tilecount="96" columns="16">
-  <image source="../../img/stage0-clouds0.png" trans="000000" width="256" height="103"/>
+ <tileset firstgid="2" name="stage0-tower" tilewidth="46" tileheight="55" tilecount="1" columns="1">
+  <image source="../../img/stage0-tower.png" width="46" height="55"/>
  </tileset>
- <tileset firstgid="98" name="stage0-clouds1" tilewidth="16" tileheight="16" tilecount="96" columns="16">
-  <image source="../../img/stage0-clouds1.png" trans="000000" width="256" height="103"/>
+ <tileset firstgid="3" name="stage0-cloud0" tilewidth="256" tileheight="103" tilecount="1" columns="1">
+  <image source="../../img/stage0-cloud0.png" width="256" height="103"/>
+ </tileset>
+ <tileset firstgid="4" name="stage0-tree0" tilewidth="18" tileheight="21" tilecount="1" columns="1">
+  <image source="../../img/stage0-tree0.png" width="18" height="21"/>
+ </tileset>
+ <tileset firstgid="5" name="stage0-tree1" tilewidth="11" tileheight="22" tilecount="1" columns="1">
+  <image source="../../img/stage0-tree1.png" width="11" height="22"/>
  </tileset>
  <layer name="ground0" width="16" height="60">
   <data encoding="base64" compression="gzip">
@@ -16,13 +22,16 @@
  </layer>
  <layer name="ground1" width="16" height="60">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3LMQ0AAAgDMMTMv0Y8jISr/Zvp5XABAADg0wKoED8oAA8AAA==
+   H4sIAAAAAAAAA+2UwQoAIAhDJfT/fzm6hkGaVgPfMdTGchHtwcqZbPau+iPqZw0WTZ76SLx389Rr9fYHbvvekuczvXsHzUuLlpcZOMGiOzIvcjgDIa+3NWbnUwN174ti4Nnf7FwLYeUK4S8u/qX2B5sOYd/TjQAPAAA=
   </data>
  </layer>
- <objectgroup name="play-field0"/>
+ <objectgroup name="play-field0">
+  <object id="6" name="enemy-bg-turret" type="entity" x="48" y="392"/>
+  <object id="7" name="enemy-bg-turret" type="entity" x="176" y="152"/>
+ </objectgroup>
  <layer name="clouds0" width="16" height="60">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3BAQ0AAADCoPdPbQ8HFAAAAPwbZzTZygAPAAA=
+   H4sIAAAAAAAAA+3OMQ0AAAwDoCbz73kyehQUkADQcO0AAMCYB/fKfw0ADwAA
   </data>
  </layer>
  <objectgroup name="play-field1">
@@ -31,7 +40,7 @@
  </objectgroup>
  <layer name="clouds1" width="16" height="60">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3RVVICABRAUdZqYosdmGBji53YHdhi7cyzA3915t2Zs4KbSET/uTLKqaCSKqpJUkMtddTTQCNNNJOihVbaaKeDTrropode0vTRzwCDDDFMhiwjjDLGOBNMMkWOaWaYZY55FlhkiTzLrLDKGutssMkW2+ywyx4F9jngkCOOOeGUM8654JIrrrnhljuK3PPAI08888Irb5R454NPvvj+bU4URVEURVEURX+qHxdHHsYADwAA
+   H4sIAAAAAAAAA+3NMQ0AAAgDsCX494yFvYTWQBO4a57/AABAbwHX7M8hAA8AAA==
   </data>
  </layer>
  <layer name="clouds2" width="16" height="60">

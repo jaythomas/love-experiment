@@ -15,9 +15,12 @@ local get_entity_configs = function(directory)
   local entities = {}
   local file_list = Love.filesystem.getDirectoryItems(directory)
   for _, file_name in ipairs(file_list) do
-    local file_name_without_ext = file_name:match('(.+)%..+')
-    local entity = require(directory .. '/' .. file_name_without_ext)
-    entities[file_name_without_ext] = entity
+    -- Ignore non-lua files
+    if file_name:match('[^.]+$') == 'lua' then
+      local file_name_without_ext = file_name:match('(.+)%..+')
+      local entity = require(directory .. '/' .. file_name_without_ext)
+      entities[file_name_without_ext] = entity
+    end
   end
   return entities
 end
