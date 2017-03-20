@@ -22,6 +22,10 @@ Given a `nil` value instead of a table, the entity won't be given a body.
   - `kinematic` - Body interacts with dynamic bodies but cannot be moved by them.
   - `static` - Body interacts with dynamic bodies but cannot be moved by them and never has velocity.
 
+### dead (true)
+
+If value is present, the entity will be excluded from actions not allowed when dead, such as moving.
+
 ### damage (number = 0)
 
 How much damage the entity will do to another entity on contact.
@@ -31,6 +35,10 @@ How much damage the entity will do to another entity on contact.
 Divides the damage received from another entity:
 
 `health = health - (other_entity.damage / defense)`
+
+### destroyed (true)
+
+When flag is present, entity will be cleaned up next game loop.
 
 ### fixture (table)
 
@@ -85,6 +93,8 @@ The maximum velocity an entity can travel.
 ### on_begin_contact (table)
 
 An array of strings, each string being the name of a system to invoke when the entity begins contact with another entity.
+The systems are passed one parameter, `entity`, being the entity's table.
+The systems are invoked in order.
 Example:
 
 ```lua
@@ -94,6 +104,14 @@ on_begin_contact = { 'update-health', 'flash-damage' }
 ### on_death (table)
 
 An array of strings, each string being the name of a system to invoke when the entity's health reach zero or below.
+The systems are passed one parameter, `entity`, being the entity's table.
+The systems are invoked in order.
+
+### on_update (table)
+
+An array of strings, each string being the name of a system to invoke each game loop.
+The systems are passed two parameters, `entity`, being the entity's table, and `dt` being the delta time since the previous update.
+The systems are invoked in order.
 
 ### player_id (number)
 

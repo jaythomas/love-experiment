@@ -13,7 +13,7 @@ local system = function(entity, body)
   local pos_x, pos_y = body:getPosition()
 
   -- Do the quicker calculations first
-  if pos_x < 0 or pos_y < 0 then
+  if pos_x < -20 or pos_y < -20 then
     entity.destroyed = true
     return
   end

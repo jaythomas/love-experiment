@@ -16,6 +16,8 @@ local system = function(entity, sprites)
   local loaded_set = {}
   loaded_set.image = Love.graphics.newImage(sprite_config.path)
   loaded_set.actions = {}
+  loaded_set.offset_x = sprite_config.offset_x
+  loaded_set.offset_y = sprite_config.offset_y
   local img_w = loaded_set.image:getWidth()
   local img_h = loaded_set.image:getHeight()
 
@@ -37,6 +39,10 @@ local system = function(entity, sprites)
       sprite_action.duration or sprite_config.duration or 1,
       sprite_action.on_loop or sprite_config.on_loop or nil
     )
+    -- I know we don't own this table but
+    -- what's the worst that could happen...
+    loaded_set.actions[key].offset_x = sprite_action.offset_x
+    loaded_set.actions[key].offset_y = sprite_action.offset_y
   end
 
   -- Initialize the default sprite

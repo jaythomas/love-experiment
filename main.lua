@@ -12,6 +12,7 @@ local Timer = require 'lib/timer'
 local World = require 'src/services/world'
 
 -- Systems
+local CallOnUpdate = require 'src/systems/call-on-update'
 local DestroyEntity = require 'src/systems/destroy-entity'
 local UpdateCamera = require 'src/systems/update-camera'
 local UpdateEntityAnimation = require 'src/systems/update-entity-animation'
@@ -89,6 +90,7 @@ function Love.update(dt)
       UpdateInputVelocity(entity)
       UpdatePlayerBoundaries(entity)
       UpdateEntityAnimation(entity, dt)
+      CallOnUpdate(entity, dt)
       i = i + 1
     end
   end

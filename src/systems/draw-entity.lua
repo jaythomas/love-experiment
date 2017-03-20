@@ -20,11 +20,15 @@ local system = function(body, draw_layer, shader, shape, sprite, sprites, layer_
   if draw_layer ~= layer_idx then
     return
   end
+
+  local offset_x = sprite.offset_x or sprites.offset_x or 0
+  local offset_y = sprite.offset_y or sprites.offset_y or 0
+
   Love.graphics.setShader(shader)
   sprite:draw(
     sprites.image,
-    body:getX(),
-    body:getY(),
+    body:getX() + offset_x,
+    body:getY() + offset_y,
     body:getAngle()
   )
   Love.graphics.setShader()

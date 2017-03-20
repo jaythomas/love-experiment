@@ -57,7 +57,11 @@ return {
     'call-on-death'
   },
   on_death = {
-    'explode'
+    'explode',
+    'unregister-player'
+  },
+  on_spawn = {
+    'register-player'
   },
   player_id = 1,
   shape = {

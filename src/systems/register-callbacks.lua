@@ -15,6 +15,7 @@ local system = function(entity)
   local on_post_contact = {}
   local on_pre_contact = {}
   local on_spawn = {}
+  local on_update = {}
 
   if entity.on_begin_contact then
     for _, value in ipairs(entity.on_begin_contact) do
@@ -56,6 +57,13 @@ local system = function(entity)
       table.insert(on_spawn, require(systems_dir .. value))
     end
     entity.on_spawn = on_spawn
+  end
+
+  if entity.on_update then
+    for _, value in ipairs(entity.on_update) do
+      table.insert(on_update, require(systems_dir .. value))
+    end
+    entity.on_update = on_update
   end
 end
 

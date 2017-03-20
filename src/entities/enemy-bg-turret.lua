@@ -10,10 +10,13 @@ return {
     'flash-damage',
     'call-on-death'
   },
+  on_spawn = {
+  },
+  on_update = {
+    'update-bg-turret'
+  },
   shape = {
-    height = 11,
-    offset_x = 8,
-    offset_y = 9,
+    height = 12,
     width = 12,
     type = 'rectangle'
   },
