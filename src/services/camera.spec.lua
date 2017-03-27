@@ -2,26 +2,6 @@ describe('services/camera', function()
 
   local service
 
-  -- Mock Love dependency
-  before_each(function()
-    local love_mock = {
-      graphics = {
-        getDimensions = function()
-          return 200, 100
-        end,
-        push = function() end,
-        rotate = function() end,
-        setDefaultFilter = function() end,
-        scale = function() end,
-        translate = function() end
-      }
-    }
-    package.loaded['src/services/love'] = love_mock
-  end)
-  after_each(function()
-    package.loaded['src/services/love'] = nil
-  end)
-
   -- Tear down stateful service between tests
   before_each(function()
     service = require 'src/services/camera'
@@ -33,8 +13,8 @@ describe('services/camera', function()
 
   describe('set_position and get_position', function()
     it('should exist', function()
-      assert.equal(type(service.set_position), 'function')
-      assert.equal(type(service.get_position), 'function')
+      assert.equal('function', type(service.set_position))
+      assert.equal('function', type(service.get_position))
     end)
 
     it('should should retain the state of the given positions', function()

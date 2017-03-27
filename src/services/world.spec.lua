@@ -1,30 +1,6 @@
 describe('services/world', function()
 
-  local Love
-
-  -- Mock Love service
-  before_each(function()
-    package.loaded['src/services/love'] = {
-      physics = {
-        newWorld = function()
-          local world = {}
-          function world:setCallbacks()
-            return self
-          end
-          function world:setContactFilter()
-            return self
-          end
-          return world
-        end,
-        setMeter = function() end
-      }
-    }
-    Love = require 'src/services/love'
-  end)
-  after_each(function()
-    Love = nil
-    package.loaded['src/services/love'] = nil
-  end)
+  local Love = require 'src/services/love'
 
   it('should set the meter when required', function()
     spy.on(Love.physics, 'setMeter')
@@ -44,7 +20,7 @@ describe('services/world', function()
 
   it('should return the world', function()
     local service = require 'src/services/world'
-    assert(type(service.setCallbacks == 'function'))
+    assert.equal('function', type(service.setCallbacks))
   end)
 
 end)

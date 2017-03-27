@@ -4,7 +4,7 @@ describe('services/xml', function()
 
   describe('decode', function()
     it('should exist', function()
-      assert.equal(type(Base64.decode), 'function')
+      assert.equal('function', type(Base64.decode))
     end)
 
     it('should assert a string is given', function()
@@ -17,13 +17,13 @@ describe('services/xml', function()
     it('should decode a string from base64', function()
       local input = 'aGVsbG8gd29ybGQh'
       local expectation = 'hello world!'
-      assert.equal(Base64.decode(input), expectation)
+      assert.equal(expectation, Base64.decode(input))
     end)
   end)
 
   describe('encode', function()
     it('should exist', function()
-      assert.equal(type(Base64.encode), 'function')
+      assert.equal('function', type(Base64.encode))
     end)
 
     it('should assert a string is given', function()
@@ -36,7 +36,7 @@ describe('services/xml', function()
     it('should encode a string into base64', function()
       local input = 'hello world!'
       local expectation = 'aGVsbG8gd29ybGQh'
-      assert.equal(Base64.encode(input), expectation)
+      assert.equal(expectation, Base64.encode(input))
     end)
   end)
 

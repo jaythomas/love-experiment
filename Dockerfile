@@ -4,6 +4,8 @@ MAINTAINER Jay Thomas <jay@gfax.ch>
 ## Build additional system packages
 RUN apk update && \
     apk upgrade && \
+    # run the same lua interpreter as LOVE
+    apk add luajit && \
     # luacov dependency
     apk add python && \
     rm -rf /var/cache/apk/*

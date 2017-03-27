@@ -69,8 +69,9 @@ The entity's starting health.
 
 ### input_actions (table)
 
-Each key in the table corresponds to an input button/key and the value corresponds to the action the entity wants to perform when that button/key is presset.
+Each key in the table corresponds to an input action and the value corresponds to the action the entity wants to perform when that button/key is presset.
 The inputs are typically registered to the input on spawn and unregistered on death.
+Available actions: `up`, `down`, `left`, `right`, `start`, `shot1`, `shot2`
 Example:
 
 ```lua

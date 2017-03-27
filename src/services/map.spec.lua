@@ -120,7 +120,7 @@ describe('services/map', function()
   describe('load', function()
     it('should exist', function()
       local service = require(path)
-      assert.equal(type(service.load), 'function')
+      assert.equal('function', type(service.load))
     end)
 
     it('should assert a valid map name is given', function()
@@ -180,8 +180,8 @@ describe('services/map', function()
 
       local results = service.load('foo')
 
-      assert.equal(results.columns, 2)
-      assert.equal(#results.quads, 256)
+      assert.equal(2, results.columns)
+      assert.equal(256, #results.quads)
 
       assert.spy(Love.graphics.newQuad).called(256)
     end)
@@ -240,20 +240,20 @@ describe('services/map', function()
 
       local results = service.load('foo')
 
-      assert.equal(type(results.layers), 'table')
-      assert.equal(#results.layers, 1)
+      assert.equal('table', type(results.layers))
+      assert.equal(1, #results.layers)
 
       local layer1 = results.layers[1]
-      assert.equal(type(layer1), 'table')
-      assert.equal(type(layer1.objects), 'table')
-      assert.equal(#layer1.objects, 2)
+      assert.equal('table', type(layer1))
+      assert.equal('table', type(layer1.objects))
+      assert.equal(2, #layer1.objects)
 
       local fixture1 = layer1.objects[1]
-      assert.equal(fixture1.body, 'body')
-      assert.equal(fixture1.shape, 'rectangle')
+      assert.equal('body', fixture1.body)
+      assert.equal('rectangle', fixture1.shape)
       local fixture2 = layer1.objects[2]
-      assert.equal(fixture2.body, 'body')
-      assert.equal(fixture2.shape, 'polygon')
+      assert.equal('body', fixture2.body)
+      assert.equal('polygon', fixture2.shape)
 
       assert.spy(Love.physics.newBody).called(2)
       assert.spy(Love.physics.newPolygonShape).called(1)
@@ -268,7 +268,7 @@ describe('services/map', function()
   describe('draw', function()
     it('should exist', function()
       local service = require(path)
-      assert.equal(type(service.draw), 'function')
+      assert.equal('function', type(service.draw))
     end)
 
     it('should draw the active map', function()
@@ -407,7 +407,7 @@ describe('services/map', function()
   describe('unload', function()
     it('should exist', function()
       local service = require(path)
-      assert.equal(type(service.unload), 'function')
+      assert.equal('function', type(service.unload))
     end)
 
     it('should assert a valid map name is given', function()

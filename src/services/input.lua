@@ -5,27 +5,53 @@ local Util = require 'src/services/util'
 
 local service = {}
 
+local key_map = {
+  dpdown = 'down',
+  dpleft = 'left',
+  dpright = 'right',
+  dpup = 'up',
+  down = 'down',
+  left = 'left',
+  right = 'right',
+  up = 'up',
+  ['return'] = 'start',
+  x = 'shot1',
+  c = 'shot2'
+}
 -- Buffer key releases to trigger when unpausing
 local pause_buffer
-local press_callbacks = {}
-local release_callbacks = {}
+local press_callbacks = {
+  down = {},
+  left = {},
+  up = {},
+  right = {},
+  start = {},
+  shot1 = {},
+  shot2 = {}
+}
+local release_callbacks = Util.copy(press_callbacks)
 
 local call_key_press = function(pressed_key)
+  -- Translate the pressed key into a game action
+  local action = key_map[pressed_key]
+  -- Ignore unmapped keys
+  if not action then return end
+
   if service.is_paused() then
     -- Special exception for the pause key
-    if pressed_key == 'return' then
+    if action == 'start' then
       service.toggle_paused()
       return
     end
     -- Remove any buffered key releases because the player
     -- pressed the key back down while still paused.
-    pause_buffer[pressed_key] = nil
+    pause_buffer[action] = nil
     return
   end
 
-  local array = press_callbacks[pressed_key]
+  local array = press_callbacks[action]
 
-  if (array) then
+  if array then
     local i = 1
     while array[i] do
       array[i]()
@@ -35,12 +61,17 @@ local call_key_press = function(pressed_key)
 end
 
 local call_key_release = function(released_key)
+  -- Translate the pressed key into a game action
+  local action = key_map[released_key]
+  -- Ignore unmapped keys
+  if not action then return end
+
   if service.is_paused() then
-    pause_buffer[released_key] = true
+    pause_buffer[action] = true
     return
   end
 
-  local array = release_callbacks[released_key]
+  local array = release_callbacks[action]
 
   if (array) then
     local i = 1
@@ -51,22 +82,27 @@ local call_key_release = function(released_key)
   end
 end
 
+local get_actions = function()
+  local actions = {}
+  local n = 0
+
+  for k in pairs(press_callbacks) do
+    n = n + 1
+    actions[n] = k
+  end
+  return actions
+end
+
 local is_paused = function()
   return type(pause_buffer) == 'table'
 end
 
 local register_key_press = function(key, fn)
-  if not press_callbacks[key] then
-    press_callbacks[key] = {}
-  end
   table.insert(press_callbacks[key], fn)
   return fn
 end
 
 local register_key_release = function(key, fn)
-  if not release_callbacks[key] then
-    release_callbacks[key] = {}
-  end
   table.insert(release_callbacks[key], fn)
   return fn
 end
@@ -86,10 +122,41 @@ local toggle_paused = function()
   end
 end
 
+local unregister_key_press = function(action, fn)
+  local index_to_remove = nil
+  for idx, value in ipairs(press_callbacks[action]) do
+    if value == fn then
+      index_to_remove = idx
+    end
+  end
+  assert(
+    index_to_remove ~= nil,
+    'Key-press function to unregister does not exist!'
+  )
+  table.remove(press_callbacks[action], index_to_remove)
+end
+
+local unregister_key_release = function(action, fn)
+  local index_to_remove = nil
+  for idx, value in ipairs(release_callbacks[action]) do
+    if value == fn then
+      index_to_remove = idx
+    end
+  end
+  assert(
+    index_to_remove ~= nil,
+    'Key-release function to unregister does not exist!'
+  )
+  table.remove(release_callbacks[action], index_to_remove)
+end
+
 service.call_key_press = call_key_press
 service.call_key_release = call_key_release
+service.get_actions = get_actions
 service.is_paused = is_paused
 service.register_key_press = register_key_press
 service.register_key_release = register_key_release
+service.unregister_key_press = unregister_key_press
+service.unregister_key_release = unregister_key_release
 service.toggle_paused = toggle_paused
 return service

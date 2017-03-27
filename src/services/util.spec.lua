@@ -8,18 +8,18 @@ describe('services/util', function()
 
   describe('angle', function()
     it('should exist', function()
-      assert.equal(type(Util.angle), 'function')
+      assert.equal('function', type(Util.angle))
     end)
 
     it('should return the arctangent radians between two vectors', function()
-      assert.equal(Util.angle(2, 4, 6, 8), 0.785398163397448279)
-      assert.equal(Util.angle(-12, 14, 16, -32), -1.0240074859056491619)
+      assert.equal(0.785398163397448279, Util.angle(2, 4, 6, 8))
+      assert.equal(-1.0240074859056493839, Util.angle(-12, 14, 16, -32))
     end)
   end)
 
   describe('copy', function()
     it('should exist', function()
-      assert.equal(type(Util.copy), 'function')
+      assert.equal('function', type(Util.copy))
     end)
 
     it('should return copies of tables with keys', function()
@@ -27,8 +27,8 @@ describe('services/util', function()
       local b = a
       local c = Util.copy(a)
       a.foo = 'baz'
-      assert.equal(b.foo, 'baz')
-      assert.equal(c.foo, 'bar')
+      assert.equal('baz', b.foo)
+      assert.equal('bar', c.foo)
     end)
 
     it('should return copies of tables with indexes', function()
@@ -36,8 +36,8 @@ describe('services/util', function()
       local b = a
       local c = Util.copy(a)
       a[1] = 'baz'
-      assert.equal(b[1], 'baz')
-      assert.equal(c[1], 'foo')
+      assert.equal('baz', b[1])
+      assert.equal('foo', c[1])
     end)
 
     it('should return deep copies of tables', function()
@@ -49,82 +49,82 @@ describe('services/util', function()
         }
       }
       local b = Util.copy(a)
-      assert.same(a, b)
+      assert.same(b, a)
     end)
 
     it('should return strings', function()
       local str = 'Foobar123'
-      assert.equal(Util.copy(str), 'Foobar123')
+      assert.equal('Foobar123', Util.copy(str))
     end)
 
     it('should return integers', function()
       local int = 7
-      assert.equal(Util.copy(int), 7)
+      assert.equal(7, Util.copy(int))
     end)
 
     it('should return booleans', function()
       local bool = true
-      assert.equal(Util.copy(bool), true)
+      assert.equal(true, Util.copy(bool))
     end)
 
     it('should return nils', function()
-      assert.equal(Util.copy(nil), nil)
+      assert.equal(nil, Util.copy(nil))
     end)
   end)
 
   describe('distance', function()
     it('should exist', function()
-      assert.equal(type(Util.distance), 'function')
+      assert.equal('function', type(Util.distance))
     end)
 
     it('should return the squared distance (pixels) between two points', function()
-      assert.equal(Util.distance(0, 0, 2, 2), 8)
-      assert.equal(Util.distance(0, 0, 2, 4), 20)
+      assert.equal(8, Util.distance(0, 0, 2, 2))
+      assert.equal(20, Util.distance(0, 0, 2, 4))
     end)
 
     it('should return the distance (pixels) between two points', function()
-      assert.equal(Util.distance(0, 0, 2, 2, false), 2.8284271247461903)
-      assert.equal(Util.distance(0, 0, 2, 4, false), 4.47213595499958)
+      assert.equal(2.8284271247461903, Util.distance(0, 0, 2, 2, false))
+      assert.equal(4.47213595499958, Util.distance(0, 0, 2, 4, false))
     end)
 
     it('should return 0 for identical points', function()
-      assert.equal(Util.distance(2, 4, 2, 4), 0)
+      assert.equal(0, Util.distance(2, 4, 2, 4))
     end)
   end)
 
   describe('push', function()
     it('should exist', function()
-      assert.equal(type(Util.push), 'function')
+      assert.equal('function', type(Util.push))
     end)
 
     it('should modify the given table', function()
       local t = { 1, 2 }
       Util.push(t, 3)
-      assert.equal(t[1], 1)
-      assert.equal(t[2], 2)
-      assert.equal(t[3], 3)
+      assert.equal(1, t[1])
+      assert.equal(2, t[2])
+      assert.equal(3, t[3])
     end)
 
     it('should accept a list of elements to push', function()
       local t = { 1 }
       Util.push(t, 2, 3)
-      assert.equal(t[1], 1)
-      assert.equal(t[2], 2)
-      assert.equal(t[3], 3)
+      assert.equal(1, t[1])
+      assert.equal(2, t[2])
+      assert.equal(3, t[3])
     end)
 
     it('should ignore nil values', function()
       local t = { 1 }
       Util.push(t, nil, 2)
-      assert.equal(t[1], 1)
-      assert.equal(t[2], 2)
-      assert.equal(t[3], nil)
+      assert.equal(1, t[1])
+      assert.equal(2, t[2])
+      assert.equal(nil, t[3])
     end)
   end)
 
   describe('reduce', function()
     it('should exist', function()
-      assert.equal(type(Util.reduce), 'function')
+      assert.equal('function', type(Util.reduce))
     end)
 
     it('should reduce an array to a combinator\'s value', function()
@@ -133,8 +133,8 @@ describe('services/util', function()
         return a + b
       end
 
-      assert.equal(Util.reduce(array, combinator), 6)
-      assert.equal(Util.reduce(array, combinator, 3), 9)
+      assert.equal(6, Util.reduce(array, combinator))
+      assert.equal(9, Util.reduce(array, combinator, 3))
     end)
 
     it('should throw an error if no values were passed in', function()
@@ -153,31 +153,31 @@ describe('services/util', function()
 
   describe('split', function()
     it('should exist', function()
-      assert.equal(type(Util.split), 'function')
+      assert.equal('function', type(Util.split))
     end)
 
     it('should split a string with the given separator', function()
       local str = 'foo-bar-baz'
       local expectation = { 'foo', 'bar', 'baz' }
-      assert.same(Util.split(str, '-'), expectation)
+      assert.same(expectation, Util.split(str, '-'))
       str = 'foo bar baz'
-      assert.same(Util.split(str, ' '), expectation)
+      assert.same(expectation, Util.split(str, ' '))
       str = 'foo%bar%baz'
-      assert.same(Util.split(str, '%'), expectation)
+      assert.same(expectation, Util.split(str, '%'))
       str = 'foo$bar$baz'
-      assert.same(Util.split(str, '$'), expectation)
+      assert.same(expectation, Util.split(str, '$'))
     end)
 
     it('should split a string with a multi-character separator', function()
       local str = 'foo%%%bar%%%baz'
       local expectation = { 'foo', 'bar', 'baz' }
-      assert.same(Util.split(str, '%%%'), expectation)
+      assert.same(expectation, Util.split(str, '%%%'))
     end)
 
     it('should default to a whitespace separator if none is given', function()
       local str = 'foo bar baz'
       local expectation = { 'foo', 'bar', 'baz' }
-      assert.same(Util.split(str), expectation)
+      assert.same(expectation, Util.split(str))
     end)
 
     it('should assert that the separator is at least one character', function()

@@ -11,22 +11,6 @@ return {
   },
   health = 100,
   input_actions = {
-    dpdown = {
-      key_press = 'move-down-begin',
-      key_release = 'move-down-finish'
-    },
-    dpleft = {
-      key_press = 'move-left-begin',
-      key_release = 'move-left-finish'
-    },
-    dpright = {
-      key_press = 'move-right-begin',
-      key_release = 'move-right-finish'
-    },
-    dpup = {
-      key_press = 'move-up-begin',
-      key_release = 'move-up-finish'
-    },
     down = {
       key_press = 'move-down-begin',
       key_release = 'move-down-finish'
@@ -43,10 +27,10 @@ return {
       key_press = 'move-up-begin',
       key_release = 'move-up-finish'
     },
-    ['return'] = {
+    start = {
       key_press = 'toggle-pause'
     },
-    x = {
+    shot1 = {
       key_press = 'shot1'
     }
   },

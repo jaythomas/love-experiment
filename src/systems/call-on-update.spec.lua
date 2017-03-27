@@ -1,6 +1,6 @@
-describe('systems/draw-entity', function()
+describe('systems/call-on-update', function()
 
-  local system = require 'src/systems/draw-entity'
+  local system = require 'src/systems/call-on-update'
 
   describe('it should be a function', function()
     assert.equal('function', type(system))

@@ -7,6 +7,7 @@ local Entity = require 'src/services/entity'
 local Input = require 'src/services/input'
 local Love = require 'src/services/love'
 local Map = require 'src/services/map'
+local Menu = require 'src/services/menu'
 local Shader = require 'src/services/shader'
 local Timer = require 'lib/timer'
 local World = require 'src/services/world'
@@ -21,19 +22,17 @@ local UpdateInputVelocity = require 'src/systems/update-input-velocity'
 local UpdatePlayerBoundaries = require 'src/systems/update-player-boundaries'
 
 -- Functions to initialize on game boot
-function Love.load(args)
+Love.load = function(args)
   Args.load(args)
   Shader.index()
-  Map.load('stage0')
-  -- Press esc to close game
-  Input.register_key_press('escape', function()
-    Love.event.quit()
-  end)
+  Menu.index()
+  Menu.load('main')
 end
 
 -- Functions to run on re-draw
 function Love.draw()
   Camera.set()
+  Menu.draw()
   Map.draw()
   -- TODO - this could be an entity
   if Input.is_paused() then
@@ -45,32 +44,37 @@ end
 -- Gamepad/Joystick dpad button press event
 -- joystick (joystick table) https://love2d.org/wiki/Joystick
 -- button (string)
-function Love.gamepadpressed(_, button)
+Love.gamepadpressed = function(_, button)
   Input.call_key_press(button)
 end
 
 -- Gamepad/Joystick dpad button release event
 -- joystick (joystick table) https://love2d.org/wiki/Joystick
 -- button (string)
-function Love.gamepadreleased(_, button)
+Love.gamepadreleased = function(_, button)
   Input.call_key_release(button)
 end
 
 -- All active callbacks for pressing a key
 -- pressedKey (string)
-function Love.keypressed(pressed_key)
+Love.keypressed = function(pressed_key)
+  -- Press esc to close game. This will eventually
+  -- be a reserved shortcut for debug mode.
+  if pressed_key == 'escape' then
+    Love.event.quit()
+  end
   Input.call_key_press(pressed_key)
 end
 
 -- All active callbacks for releasing a key
 -- releasedKey (string)
-function Love.keyreleased(released_key)
+Love.keyreleased = function(released_key)
   Input.call_key_release(released_key)
 end
 
 -- Calculations to re-run on going through another loop
 -- dt (integer) delta time (in seconds)
-function Love.update(dt)
+Love.update = function(dt)
   if Input.is_paused() then
     return
   end

@@ -1,6 +1,6 @@
-describe('systems/draw-entity', function()
+describe('systems/register-body', function()
 
-  local system = require 'src/systems/draw-entity'
+  local system = require 'src/systems/register-body'
 
   describe('it should be a function', function()
     assert.equal('function', type(system))

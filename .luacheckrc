@@ -1,34 +1,33 @@
 -- -*- mode: lua; -*- vim: set syntax=lua:
 
--- https://github.com/mpeterv/luacheck/blob/master/src/luacheck/stds.lua
-std = 'lua51'
+-- https://github.com/mpeterv/luacheck/blob/master/src/luacheck/builtin_standards.lua
+std = 'luajit'
 
 -- Ignore libs as we aren't accountable for those
 exclude_files = { 'lib/*.*' }
 
--- Ignore non-standard lua love behavior just right here
-files['conf.lua'] = {
-  globals = {
-    'love'
-  }
-}
+-- Ignore lua love global just right here
 files['src/services/love.lua'] = {
   globals = {
     'love'
   }
 }
 -- Ignore busted spec file globals
-files['src/*/*.spec.lua'] = {
-  globals = {
-    'after_each',
-    'before_each',
-    'describe',
-    'match',
-    'mock',
-    'stub',
-    'spy',
-    'it'
-  }
+local busted_globals = {
+  'after_each',
+  'before_each',
+  'describe',
+  'match',
+  'mock',
+  'stub',
+  'spy',
+  'it'
+}
+files['*.spec.lua'] = {
+  globals = busted_globals
+}
+files['**/*.spec.lua'] = {
+  globals = busted_globals
 }
 
 -- List of allowed globals

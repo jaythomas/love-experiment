@@ -1,6 +1,6 @@
-describe('systems/draw-entity', function()
+describe('systems/destroy-entity', function()
 
-  local system = require 'src/systems/draw-entity'
+  local system = require 'src/systems/destroy-entity'
 
   describe('it should be a function', function()
     assert.equal('function', type(system))

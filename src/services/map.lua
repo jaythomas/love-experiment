@@ -8,7 +8,7 @@ local Tmx = require 'src/services/tmx'
 local Util = require 'src/services/util'
 local World = require 'src/services/world'
 
-local drawEntity = require 'src/systems/draw-entity'
+local DrawEntity = require 'src/systems/draw-entity'
 
 -- Creates table of map filenames as keys
 -- and their contents as parsed tables:
@@ -18,7 +18,7 @@ local get_map_tables = function(map_directory, map_file_ext)
   for _, file_name in ipairs(file_list) do
     local file_ext = string.sub(file_name, -string.len(map_file_ext))
     -- Only keep files matching the tiled file extension
-    if (file_ext == map_file_ext) then
+    if file_ext == map_file_ext then
       -- ie., "src/maps/general.tmx"
       local file_path = map_directory .. '/' .. file_name
       -- ie., "general" for "general.tmx"
@@ -40,7 +40,7 @@ local maps = get_map_tables(map_directory, map_file_ext)
 local draw_objects = function(layer, layer_idx)
   -- Draw each entity that belongs to this layer
   for _, entity in ipairs(Entity.list) do
-    drawEntity(entity, layer_idx)
+    DrawEntity(entity, layer_idx)
   end
   -- Draw collision fixture shape's edges in debug mode
   if Args.get_arg('debug') then
@@ -73,10 +73,14 @@ local draw_tiles = function(layer, map)
 end
 
 local draw = function()
-  local map = active_map
-  for idx, layer in ipairs(map.layers) do
+  -- We're probably on the menu screen
+  -- if there isn't an active map
+  if not active_map then
+    return
+  end
+  for idx, layer in ipairs(active_map.layers) do
     if layer.type == 'tiles' then
-      draw_tiles(layer, map)
+      draw_tiles(layer, active_map)
     else
       draw_objects(layer, idx)
     end

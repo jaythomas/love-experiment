@@ -13,15 +13,15 @@ describe('services/args', function()
 
   describe('load', function()
     it('should exist', function()
-      assert.equal(type(service.load), 'function')
+      assert.equal('function', type(service.load))
     end)
 
     it('should collect and return arguments', function()
       local args = { 'debug', 'foo' }
       service.load(args)
-      assert.equal(service.get_arg('debug'), true)
-      assert.equal(service.get_arg('foo'), true)
-      assert.equal(service.get_arg('bar'), false)
+      assert.equal(true, service.get_arg('debug'))
+      assert.equal(true, service.get_arg('foo'))
+      assert.equal(false, service.get_arg('bar'))
     end)
   end)
 
