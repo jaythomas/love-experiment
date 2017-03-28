@@ -12,8 +12,10 @@ describe('services/util', function()
     end)
 
     it('should return the arctangent radians between two vectors', function()
-      assert.equal(0.785398163397448279, Util.angle(2, 4, 6, 8))
-      assert.equal(-1.0240074859056493839, Util.angle(-12, 14, 16, -32))
+      local expectation = math.atan2(8 - 4, 6 - 2)
+      assert.equal(expectation, Util.angle(2, 4, 6, 8))
+      expectation = math.atan2(-32 - 14, 16 + 12)
+      assert.equal(expectation, Util.angle(-12, 14, 16, -32))
     end)
   end)
 
