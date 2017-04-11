@@ -25,18 +25,34 @@ describe('services/map', function()
         read = function()
           local test_tmx = [[
             <?xml version="1.0" encoding="UTF-8"?>
-            <map version="1.0" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="32" tileheight="32" nextobjectid="1">
-             <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-              <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
-             </tileset>
-             <layer name="Tile Layer 1" width="2" height="2">
-              <data>
-               <tile gid="1"/>
-               <tile gid="2"/>
-               <tile gid="17"/>
-               <tile gid="18"/>
-              </data>
-             </layer>
+            <map
+              version="1.0"
+              orientation="orthogonal"
+              renderorder="right-down"
+              width="2"
+              height="2"
+              tilewidth="32"
+              tileheight="32"
+              nextobjectid="1">
+
+              <tileset
+                firstgid="1"
+                name="general"
+                tilewidth="32"
+                tileheight="32"
+                tilecount="256"
+                columns="16">
+
+                <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
+              </tileset>
+              <layer name="Tile Layer 1" width="2" height="2">
+                <data>
+                  <tile gid="1"/>
+                  <tile gid="2"/>
+                  <tile gid="17"/>
+                  <tile gid="18"/>
+                </data>
+              </layer>
             </map>
           ]]
           return test_tmx

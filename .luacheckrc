@@ -15,6 +15,7 @@ files['src/services/love.lua'] = {
 -- Ignore busted spec file globals
 local busted_globals = {
   'after_each',
+  'assert',
   'before_each',
   'describe',
   'match',
@@ -55,6 +56,9 @@ jobs = 1
 
 -- true, don't allow variables to be shadowed
 redefined = true
+
+-- maximum characters per line allower before throw an error
+max_line_length = 120
 
 -- true, don't allow use of the deprecated module function
 module = true

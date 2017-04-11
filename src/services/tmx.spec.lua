@@ -35,8 +35,24 @@ describe('services/tmx', function()
     it('should parse tilesets', function()
       local test_tmx = [[
         <?xml version="1.0" encoding="UTF-8"?>
-        <map version="1.0" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="32" tileheight="32" nextobjectid="1">
-          <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+        <map
+          version="1.0"
+          orientation="orthogonal"
+          renderorder="right-down"
+          width="2"
+          height="2"
+          tilewidth="32"
+          tileheight="32"
+          nextobjectid="1">
+
+          <tileset
+            firstgid="1"
+            name="general"
+            tilewidth="32"
+            tileheight="32"
+            tilecount="256"
+            columns="16">
+
             <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
           </tileset>
           <tileset firstgid="257" name="countryside" tilewidth="24" tileheight="24" tilecount="4" columns="2">
@@ -71,18 +87,26 @@ describe('services/tmx', function()
     it('should parse xml-format tile layers', function()
       local test_tmx = [[
         <?xml version="1.0" encoding="UTF-8"?>
-        <map version="1.0" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="32" tileheight="32" nextobjectid="1">
-         <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-          <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
-         </tileset>
-         <layer name="Tile Layer 1" width="2" height="2">
-          <data>
-           <tile gid="1"/>
-           <tile gid="2"/>
-           <tile gid="17"/>
-           <tile gid="18"/>
-          </data>
-         </layer>
+        <map
+          version="1.0"
+          orientation="orthogonal"
+          renderorder="right-down"
+          width="2"
+          height="2"
+          tilewidth="32"
+          tileheight="32"
+          nextobjectid="1">
+          <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+            <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
+          </tileset>
+          <layer name="Tile Layer 1" width="2" height="2">
+            <data>
+              <tile gid="1"/>
+              <tile gid="2"/>
+              <tile gid="17"/>
+              <tile gid="18"/>
+            </data>
+          </layer>
         </map>
       ]]
 
@@ -116,16 +140,32 @@ describe('services/tmx', function()
     it('should parse csv-format tile layers', function()
       local test_tmx = [[
         <?xml version="1.0" encoding="UTF-8"?>
-        <map version="1.0" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="32" tileheight="32" nextobjectid="1">
-         <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-          <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
-         </tileset>
-         <layer name="My base layer" width="2" height="2">
-          <data encoding="csv">
-           1,2,
-           17,18
-          </data>
-         </layer>
+        <map
+          version="1.0"
+          orientation="orthogonal"
+          renderorder="right-down"
+          width="2"
+          height="2"
+          tilewidth="32"
+          tileheight="32"
+          nextobjectid="1">
+
+          <tileset
+            firstgid="1"
+            name="general"
+            tilewidth="32"
+            tileheight="32"
+            tilecount="256"
+            columns="16">
+
+            <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
+          </tileset>
+          <layer name="My base layer" width="2" height="2">
+            <data encoding="csv">
+              1,2,
+              17,18
+            </data>
+          </layer>
         </map>
       ]]
 
@@ -159,15 +199,31 @@ describe('services/tmx', function()
     it('should parse gzip-compressed tile layers', function()
       local test_tmx = [[
         <?xml version="1.0" encoding="UTF-8"?>
-        <map version="1.0" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="32" tileheight="32" nextobjectid="2">
-         <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-          <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
-         </tileset>
-         <layer name="My base layer" width="2" height="2">
-          <data encoding="base64" compression="gzip">
-           eJxbwsDAsASKFwIxABmkAo4=
-          </data>
-         </layer>
+        <map
+          version="1.0"
+          orientation="orthogonal"
+          renderorder="right-down"
+          width="2"
+          height="2"
+          tilewidth="32"
+          tileheight="32"
+          nextobjectid="2">
+
+          <tileset
+            firstgid="1"
+            name="general"
+            tilewidth="32"
+            tileheight="32"
+            tilecount="256"
+            columns="16">
+
+            <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
+          </tileset>
+          <layer name="My base layer" width="2" height="2">
+            <data encoding="base64" compression="gzip">
+              eJxbwsDAsASKFwIxABmkAo4=
+            </data>
+          </layer>
         </map>
       ]]
 
@@ -209,25 +265,41 @@ describe('services/tmx', function()
       package.loaded['src/services/love'] = love_mock
       local test_tmx = [[
         <?xml version="1.0" encoding="UTF-8"?>
-        <map version="1.0" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="32" tileheight="32" nextobjectid="2">
-         <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-          <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
-         </tileset>
-         <layer name="My base layer" width="2" height="2">
-          <data encoding="base64" compression="zlib">
-           eJxbwsDAsASKFwIxABmkAo4=
-          </data>
-         </layer>
-         <objectgroup name="collision">
-          <object id="1" name="lil grass box" type="cute" x="32" y="32" width="32" height="32">
-           <properties>
-            <property name="crazy" value="definitely"/>
-           </properties>
-          </object>
-          <object id="28" name="Triangle" x="608" y="128">
-           <polygon points="0,0 96,96 0,96"/>
-          </object>
-         </objectgroup>
+        <map
+          version="1.0"
+          orientation="orthogonal"
+          renderorder="right-down"
+          width="2"
+          height="2"
+          tilewidth="32"
+          tileheight="32"
+          nextobjectid="2">
+
+          <tileset
+            firstgid="1"
+            name="general"
+            tilewidth="32"
+            tileheight="32"
+            tilecount="256"
+            columns="16">
+
+            <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
+          </tileset>
+          <layer name="My base layer" width="2" height="2">
+            <data encoding="base64" compression="zlib">
+              eJxbwsDAsASKFwIxABmkAo4=
+            </data>
+          </layer>
+          <objectgroup name="collision">
+            <object id="1" name="lil grass box" type="cute" x="32" y="32" width="32" height="32">
+              <properties>
+                <property name="crazy" value="definitely"/>
+              </properties>
+            </object>
+            <object id="28" name="Triangle" x="608" y="128">
+              <polygon points="0,0 96,96 0,96"/>
+            </object>
+          </objectgroup>
         </map>
       ]]
 
@@ -271,28 +343,44 @@ describe('services/tmx', function()
     it('should parse object layers', function()
       local test_tmx = [[
         <?xml version="1.0" encoding="UTF-8"?>
-        <map version="1.0" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="32" tileheight="32" nextobjectid="2">
-         <tileset firstgid="1" name="general" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-          <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
-         </tileset>
-         <layer name="Tile Layer 1" width="2" height="2">
-          <data>
-           <tile gid="1"/>
-           <tile gid="2"/>
-           <tile gid="17"/>
-           <tile gid="18"/>
-          </data>
-         </layer>
-         <objectgroup name="collision">
-          <object id="1" name="lil grass box" type="cute" x="32" y="32" width="32" height="32" rotation="-45">
-           <properties>
-            <property name="crazy" value="definitely"/>
-           </properties>
-          </object>
-          <object id="28" name="Triangle" x="608" y="128">
-           <polygon points="0,0 96,96 0,96"/>
-          </object>
-         </objectgroup>
+        <map
+          version="1.0"
+          orientation="orthogonal"
+          renderorder="right-down"
+          width="2"
+          height="2"
+          tilewidth="32"
+          tileheight="32"
+          nextobjectid="2">
+
+          <tileset
+            firstgid="1"
+            name="general"
+            tilewidth="32"
+            tileheight="32"
+            tilecount="256"
+            columns="16">
+
+            <image source="../../img/general.png" trans="ffffff" width="512" height="512"/>
+          </tileset>
+          <layer name="Tile Layer 1" width="2" height="2">
+            <data>
+              <tile gid="1"/>
+              <tile gid="2"/>
+             <tile gid="17"/>
+             <tile gid="18"/>
+            </data>
+          </layer>
+          <objectgroup name="collision">
+            <object id="1" name="lil grass box" type="cute" x="32" y="32" width="32" height="32" rotation="-45">
+              <properties>
+                <property name="crazy" value="definitely"/>
+              </properties>
+            </object>
+            <object id="28" name="Triangle" x="608" y="128">
+              <polygon points="0,0 96,96 0,96"/>
+            </object>
+          </objectgroup>
         </map>
       ]]
 
